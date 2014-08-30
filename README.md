@@ -82,5 +82,5 @@ OS X installation instructions
    ./configure
    make
    cp -a include/gtest /usr/local/include
-   cp -a lib/.libs/* /usr/local/lib/
+   cp -a lib/.libs/*.{a,dylib} /usr/local/lib/
    ```
