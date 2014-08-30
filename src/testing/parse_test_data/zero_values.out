@@ -1,0 +1,14 @@
+url: "http://zero_values.com/adam.html"
+parser_outputs {
+  parser_name: "zero_values"
+  relations {
+    subject: "Melissa"
+    predicate: "occ"
+    object: "Banker"
+  }
+  relations {
+    subject: "Jessica"
+    predicate: "occ"
+    object: "Lawyer"
+  }
+}

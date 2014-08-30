@@ -1,0 +1,14 @@
+url: "http://relation_filters.com/foo.html"
+parser_outputs {
+  parser_name: "relation_filters"
+  relations {
+    subject: "foo"
+    predicate: "no_regexp"
+    object: "Engineer"
+  }
+  relations {
+    subject: "foo"
+    predicate: "regexp_accept"
+    object: "Engineer"
+  }
+}

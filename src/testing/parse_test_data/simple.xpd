@@ -1,0 +1,150 @@
+# Copyright 2011 Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Tests that cardinalities and QueryDefs work as advertised. Also, tests that
+# queries for urls (@href, @src, etc.) return absolute urls.
+
+parser_defs {
+  parser_name: "simple"
+  url_regexp: "^http://simple.com/"
+  userdata: "should_abort"
+
+  query_defs {
+    name: "friend_name"
+    query: "//td[@class='fr_name']"
+  }
+
+  query_defs {
+    name: "friend_occupation"
+    query: "//td[@class='fr_occ']"
+  }
+
+  relation_tmpls {
+    subject: "//div[@id='name']"
+    predicate: "occupation"
+    object: "//div[@id='occ']"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+
+  relation_tmpls {
+    subject: "%friend_name%"
+    predicate: "has_friend_with_occupation"
+    # Note: We intentionally duplicate this query, rather than defining a
+    # QueryDef for it, to test XpafParser's inlined query de-duping.
+    object: "//div[@id='occ']"
+
+    subject_cardinality: MANY
+    object_cardinality: ONE
+  }
+
+  relation_tmpls {
+    subject: "//div[@id='name']"
+    predicate: "has_friend_with_occupation"
+    object: "%friend_occupation%"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+  }
+
+  # This template should produce nothing, since the number of friend names
+  # doesn't match the number of friend occupations.
+  relation_tmpls {
+    subject: "%friend_name%"
+    predicate: "occupation"
+    object: "%friend_occupation%"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+  }
+}
+
+parser_defs {
+  parser_name: "simple_predefined_queries"
+  url_regexp: "^http://simple.com/"
+
+  relation_tmpls {
+    subject: "%url%"
+    predicate: "is"
+    object: "%url%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+}
+
+parser_defs {
+  parser_name: "simple_literals"
+  url_regexp: "^http://simple.com/"
+
+  relation_tmpls {
+    subject: "//div[@id='name']"
+    predicate: "foo"
+    object: "bar"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+
+  relation_tmpls {
+    subject: "qat"
+    predicate: "het"
+    object: "//td[@class='fr_occ']"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+  }
+
+  relation_tmpls {
+    subject: "foo"
+    predicate: "bar"
+    object: "baz"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+
+  relation_tmpls {
+    subject: "fop"
+    predicate: "bas"
+    object: "baa"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+  }
+}
+
+parser_defs {
+  parser_name: "simple_absolute_urls"
+  url_regexp: "^http://simple.com/"
+
+  relation_tmpls {
+    subject: "//td[@class='fr_url']/a/@href"
+    predicate: "name"
+    object: "//td[@class='fr_name']"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+  }
+
+  relation_tmpls {
+    subject: "george"
+    predicate: "photo"
+    object: "//td[@class='fr_img']/img/@src"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+}

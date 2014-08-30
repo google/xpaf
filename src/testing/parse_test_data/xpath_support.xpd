@@ -1,0 +1,90 @@
+# Copyright 2011 Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Tests that we support the intended types of XPath queries.
+
+parser_defs {
+  parser_name: "xpath_support"
+  url_regexp: "^http://xpath_support.com/"
+
+  query_defs {
+    name: "boolean"
+    query: "true()"
+  }
+
+  query_defs {
+    name: "float"
+    query: "number(3.14)"
+  }
+
+  query_defs {
+    name: "count"
+    query: "count(/html//li)"
+  }
+
+  query_defs {
+    name: "string"
+    query: "concat('a', 'b', 'c')"
+  }
+
+  query_defs {
+    name: "csv"
+    query: "concat(string(//li[1]), ',', string(//li[2]))"
+  }
+
+  relation_tmpls {
+    subject: "boolean"
+    predicate: "val"
+    object: "%boolean%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+
+  relation_tmpls {
+    subject: "float"
+    predicate: "val"
+    object: "%float%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+
+  relation_tmpls {
+    subject: "count"
+    predicate: "val"
+    object: "%count%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+
+  relation_tmpls {
+    subject: "string"
+    predicate: "val"
+    object: "%string%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+
+  relation_tmpls {
+    subject: "csv"
+    predicate: "val"
+    object: "%csv%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+}

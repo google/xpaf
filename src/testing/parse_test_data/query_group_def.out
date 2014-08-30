@@ -1,0 +1,30 @@
+url: "http://query_group_def.com/adam.html"
+parser_outputs {
+  parser_name: "many_to_many"
+  relations {
+    subject: "Melissa"
+    predicate: "occupation"
+    object: "Banker"
+  }
+  relations {
+    subject: "Jessica"
+    predicate: "occupation"
+    object: "Lawyer"
+  }
+}
+parser_outputs {
+  parser_name: "not_root_node_descendant"
+  relations {
+    subject: "foo"
+    predicate: "bar"
+    object: "http://query_group_def.com/george.jpg"
+  }
+}
+parser_outputs {
+  parser_name: "root_node_with_multiple_results"
+  relations {
+    subject: "one"
+    predicate: "name"
+    object: "George"
+  }
+}

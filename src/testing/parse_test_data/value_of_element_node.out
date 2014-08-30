@@ -1,0 +1,14 @@
+url: "http://value_of_element_node.com/fox.html"
+parser_outputs {
+  parser_name: "value_of_element_node"
+  relations {
+    subject: "option_one"
+    predicate: "value"
+    object: "The quick brown fox jumps over the lazy dog."
+  }
+  relations {
+    subject: "option_two"
+    predicate: "value"
+    object: "The quick brown\nfox jumps   over the lazy dog."
+  }
+}

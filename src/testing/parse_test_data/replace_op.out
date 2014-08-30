@@ -1,0 +1,14 @@
+url: "http://replace_op.com/adam.html"
+parser_outputs {
+  parser_name: "replace_op"
+  relations {
+    subject: "Enginyer"
+    predicate: "has_at_least_as_many_e_chars_as"
+    object: "Enginyyr"
+  }
+  relations {
+    subject: "Adam"
+    predicate: "is"
+    object: "Adam"
+  }
+}

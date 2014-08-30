@@ -1,0 +1,1229 @@
+http://twitter.com/billgates
+HTTP/1.1 200 OK
+Date: Fri, 01 Apr 2011 17:49:01 GMT
+Server: hi
+Status: 200 OK
+X-Transaction: 1301680141-88803-22748
+ETag: "0089b3b52a6dc8a3ddfee9edb3425569"
+Last-Modified: Fri, 01 Apr 2011 17:49:01 GMT
+X-Runtime: 0.00560
+Content-Type: text/html; charset=utf-8
+Content-Length: 49784
+Pragma: no-cache
+X-Revision: DEV
+Expires: Tue, 31 Mar 1981 05:00:00 GMT
+Cache-Control: no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+Set-Cookie: k=216.239.45.4.1301680140823610; path=/; expires=Fri, 08-Apr-11 17:49:00 GMT; domain=.twitter.com
+Set-Cookie: guest_id=130168014108464347; path=/; expires=Sun, 01 May 2011 17:49:01 GMT
+Set-Cookie: auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT
+Set-Cookie: _twitter_sess=BAh7CDoPY3JlYXRlZF9hdGwrCB2zLhIvAToHaWQiJTZlYTdjMGUzYTk4Y2U5%250AMWYwYWJiYjhjZTdjZjYxZDMwIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVy%250AOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--4c0367a3dc65c46bfc931be29de7d4f0c8f4ddf6; domain=.twitter.com; path=/; HttpOnly
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+Vary: Accept-Encoding
+Connection: close
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    
+    
+    <script type="text/javascript">
+//<![CDATA[
+(function(g){var a=location.href.split("#!")[1];if(a){window.location.hash = "";g.location.pathname = g.HBR = a.replace(/^([^/])/,"/$1");}})(window);
+//]]>
+</script>
+    <script type="text/javascript" charset="utf-8">
+      if (!twttr) {
+        var twttr = {}
+      }
+
+      // Benchmarking load time.
+      // twttr.timeTillReadyUnique = '1301673225-47777-39462';
+      // twttr.timeTillReadyStart = new Date().getTime();
+    </script>
+
+        <script type="text/javascript">
+//<![CDATA[
+var page={};var onCondition=function(D,C,A,B){D=D;A=A?Math.min(A,5):5;B=B||100;if(D()){C()}else{if(A>1){setTimeout(function(){onCondition(D,C,A-1,B)},B)}}};
+//]]>
+</script>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="en-us" http-equiv="Content-Language" />
+<meta content="Bill Gates (BillGates) is on Twitter. Sign up for Twitter to follow Bill Gates (BillGates) and get their latest updates" name="description" />
+<meta content="no" http-equiv="imagetoolbar" />
+<meta content="width = 780" name="viewport" />
+<meta content="4FTTxY4uvo0RZTMQqIyhh18HsepyJOctQ+XTOu1zsfE=" name="verify-v1" />
+<meta content="1" name="page" />
+<meta content="NOODP" name="robots" />
+<meta content="n" name="session-loggedin" />
+<meta content="BillGates" name="page-user-screen_name" />
+    <title id="page_title">Bill Gates (BillGates) on Twitter</title>
+    <link href="http://a1.twimg.com/a/1301438647/images/twitter_57.png" rel="apple-touch-icon" />
+<link href="/oexchange.xrd" rel="http://oexchange.org/spec/0.8/rel/related-target" type="application/xrd+xml" />
+<link href="http://a1.twimg.com/a/1301438647/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="alternate" href="http://twitter.com/statuses/user_timeline/50393960.rss" title="BillGates's Tweets" type="application/rss+xml" />
+    <link rel="alternate" href="http://twitter.com/favorites/50393960.rss" title="BillGates's Favorites" type="application/rss+xml" />
+  
+    
+    <link href="http://a0.twimg.com/a/1301438647/stylesheets/twitter.css?1301337105" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://a0.twimg.com/a/1301438647/stylesheets/geo.css?1301337105" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://a1.twimg.com/a/1301438647/stylesheets/buttons_new.css?1301337105" media="screen" rel="stylesheet" type="text/css" />
+        <style type="text/css">
+      
+        body {
+  background: #C0DEED url('http://a0.twimg.com/profile_background_images/47468249/bgTwitterBack.jpg') fixed repeat;
+
+}
+
+body#show #content .meta a.screen-name,
+#content .shared-content .screen-name,
+#content .meta .byline a {
+  color: #0084B4;
+}
+
+/* Link Color */
+a,
+#content tr.hentry:hover a,
+body#profile #content div.hentry:hover a,
+#side .stats a:hover span.stats_count,
+#side div.user_icon a:hover,
+li.verified-profile a:hover,
+#side .promotion .definition strong,
+p.list-numbers a:hover,
+#side div.user_icon a:hover span,
+#content .tabMenu li a,
+.translator-profile a:hover,
+#local_trend_locations li a,
+.modal-content .list-slug,
+.tweet-label a:hover,
+ol.statuses li.garuda-tweet:hover .actions-hover li span a,
+ol.statuses li.garuda-tweet .actions-hover li span a:hover {
+  color: #0084B4;
+}
+
+body,
+ul#tabMenu li a, #side .section h1,
+#side .stat a,
+#side .stats a span.stats_count,
+#side div.section-header h1,
+#side div.user_icon a,
+#side div.user_icon a:hover,
+#side div.section-header h3.faq-header,
+ul.sidebar-menu li.active a,
+li.verified-profile a,
+#side .promotion a,
+body #content .list-header h2,
+p.list-numbers a,
+.bar h3 label,
+body.timeline #content h1,
+.list-header h2 a span,
+#content .tabMenu li.active a,
+body#direct_messages #content .tabMenu #inbox_tab a,
+body#inbox #content .tabMenu #inbox_tab a,
+body#sent #content .tabMenu #sent_tab a,
+body#direct_messages #content .tabMenu #inbox_tab a,
+body#retweets_by_others #content .tabMenu #retweets_by_others_tab a,
+body#retweets #content .tabMenu #retweets_tab a,
+body#retweeted_by_others #content .tabMenu #retweeted_by_others_tab a,
+body#retweeted_of_mine #content .tabMenu #retweeted_of_mine_tab a,
+.translator-profile a,
+#owners_lists h2 a {
+  color: #333333;
+}
+
+.email-address-nag-banner {
+  border-bottom: solid 1px #C0DEED;
+}
+#side_base {
+  border-left:1px solid #C0DEED;
+  background-color: #DDEEF6;
+}
+
+ul.sidebar-menu li.active a,
+ul.sidebar-menu li a:hover,
+#side div#custom_search.active,
+#side .promotion,
+.notify div {
+  background-color: #EDFEFF;
+}
+
+.list-header,
+.list-controls,
+ul.sidebar-list li.active a,
+ul.sidebar-list li a:hover,
+.list-header-inner {
+  background-color: #DDEEF6 !important;
+}
+
+#side .actions,
+#side .promo,
+#design .side-section {
+  border: 1px solid #C0DEED;
+}
+
+#side div.section-header h3 {
+  border-bottom: 1px solid #C0DEED;
+}
+
+#side p.sidebar-location {
+  border-bottom: 1px dotted #C0DEED;
+}
+
+#side hr {
+  background: #C0DEED;
+  color: #C0DEED;
+}
+
+ul.sidebar-menu li.loading a {
+  background: #EDFEFF url('http://a1.twimg.com/a/1301438647/images/spinner.gif') no-repeat 171px 0.5em !important;
+}
+
+#side .collapsible h2.sidebar-title {
+  background: transparent url('http://a2.twimg.com/a/1301438647/images/toggle_up_dark.png') no-repeat center right !important;
+}
+
+#side .collapsible.collapsed h2.sidebar-title {
+  background: transparent url('http://a1.twimg.com/a/1301438647/images/toggle_down_dark.png') no-repeat center right !important;
+}
+
+#side ul.lists-links li a em {
+  background: url('http://a3.twimg.com/a/1301438647/images/arrow_right_dark.png') no-repeat left top;
+}
+
+#side span.pipe {
+  border-left:1px solid #C0DEED;
+}
+
+#list_subscriptions span.view-all,
+#list_memberships span.view-all,
+#profile span.view-all,
+#profile_favorites span.view-all,
+#following span.view-all,
+#followers span.view-all {
+  border-left: 0;
+}
+
+a.edit-list {
+  border-right: 1px solid #C0DEED !important;
+}
+      
+      
+      
+    </style>
+      <link href="http://a3.twimg.com/a/1301438647/stylesheets/following.css?1301337105" media="screen, projection" rel="stylesheet" type="text/css" />
+
+  </head>
+
+  <body class="account firefox-windows signin-island" id="profile">    <div class="fixed-banners">
+      
+      
+    </div>
+    <script type="text/javascript">
+//<![CDATA[
+document.domain = 'twitter.com';function fn(){document.write = "";window.top.location = window.self.location;setTimeout(function(){document.body.innerHTML = '';},0);window.self.onload = function(evt){document.body.innerHTML = '';};}if(window.top !== window.self){try{if(window.top.location.host){}else{fn();}}catch(e){fn();}}
+//]]>
+</script>
+    <div id="dim-screen"></div>
+    <ul id="accessibility" class="offscreen">
+  <li><a href="#content" accesskey="0">Skip past navigation</a></li>
+  <li>On a mobile phone? Check out <a href="http://m.twitter.com/">m.twitter.com</a>!</li>
+  <li><a href="#footer" accesskey="2">Skip to navigation</a></li>
+    <li><a href="#signin">Skip to sign in form</a></li>
+</ul>
+
+    
+    
+
+    
+
+    <div id="container" class="subpage">
+            <span id="loader" style="display:none"><img alt="Loader" src="http://a0.twimg.com/a/1301438647/images/loader.gif" /></span>
+      
+        <div class="clearfix" id="header">
+  <a href="http://twitter.com/" title="Twitter / Home" accesskey="1" id="logo">
+          <img alt="Twitter.com" src="http://a0.twimg.com/a/1301438647/images/twitter_logo_header.png" />    
+  </a>
+            <form method="post" id="sign_out_form" action="/sessions/destroy" style="display:none;">
+        <input name="authenticity_token" value="868f10ec34071c233fb338b8ad9dfa0503698d91" type="hidden"/>
+      </form>
+
+              
+  <div id="signin_controls">
+  <span id="have_an_account">
+    Have an account?<a href="/login" class="signin" tabindex="3"><span>Sign in</span></a></span>
+  <div id="signin_menu" class="common-form standard-form offscreen">
+  
+    <form method="post" id="signin" action="https://twitter.com/sessions">
+  
+  <input id="authenticity_token" name="authenticity_token" type="hidden" value="868f10ec34071c233fb338b8ad9dfa0503698d91" />  <input id="return_to_ssl" name="return_to_ssl" type="hidden" value="false" />
+  <input id="redirect_after_login" name="redirect_after_login" type="hidden" value="/BillGates" />  <p class="textbox">
+    <label for="username">Username or email</label>
+    <input type="text" id="username" name="session[username_or_email]" value="" title="username" tabindex="4"/>
+  </p>
+
+  <p class="textbox">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="session[password]" value="" title="password" tabindex="5"/>
+  </p>
+
+  <p class="remember">
+    <input type="submit" id="signin_submit" value="Sign in" tabindex="7"/>
+    <input type="checkbox" id="remember" name="remember_me" value="1" tabindex="6"/>
+    <label for="remember">Remember me</label>
+  </p>
+
+  <p class="forgot">
+    <a href="/account/resend_password" id="resend_password_link">Forgot password?</a>
+  </p>
+
+  <p class="forgot-username">
+    <a href="/account/resend_password" id="forgot_username_link" title="If you remember your password, try logging in with your email">Forgot username?</a>
+  </p>
+    <p class="complete">
+      <a href="/account/complete" id="account_complete_link">Already using Twitter on your phone?</a>
+    </p>
+  <input type="hidden" name="q" id="signin_q" value=""/>
+  </form>
+</div>
+
+</div>
+
+
+
+
+            </div>
+
+
+    <div id="profilebox_outer" class="home_page_new_home_page">
+      <div id="profilebox" class="clearfix">
+        <div id="profiletext">
+          <h1>
+            <span>Get short, timely messages from Bill Gates.</span>
+          </h1>
+
+          <h2>Twitter is a rich source of instantly updated information. It's easy to stay updated on an incredibly wide variety of topics. <strong><a href='/signup?follow=BillGates'>Join today</a></strong> and <strong>follow @BillGates</strong>.</h2>
+        </div>
+        <div id="profilebutton">
+          <form action="/signup" id="account_signup_form" method="get" name="account_signup_form">            <input id="follow" name="follow" type="hidden" value="BillGates" />
+            <input class="profilesubmit" id="profile_submit" name="commit" type="submit" value="Sign Up &rsaquo;" />
+          </form>
+          <p id="profilebox-mobile">
+            <span class="sms-follow-instructions">Get updates via SMS by texting <strong>follow BillGates</strong> to <strong>40404</strong> in the United States</span><br/>
+            <a id="sms_codes_link">
+              <span>Codes for other countries</span>
+            </a>
+            <div id="sms_codes">
+  <table celspacing="0" celpadding="0">
+    <thead>
+      <tr class="title">
+        <td colspan="3">Two-way (sending and receiving) short codes:</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th class="sms-country">Country</th>
+        <th class="sms-code">Code</th>
+        <th class="sms-network">For customers of</th>
+      </tr>
+      <tr>
+  <td class="sms-country">Australia</td>
+  <td colspan="2" class="sms-code-network">
+    <ul>
+      
+        <li>
+          <span class="sms-code">0198089488</span>
+          <span class="sms-network">Telstra</span>
+        </li>
+      
+    </ul>
+  </td>
+</tr><tr>
+  <td class="sms-country">Canada</td>
+  <td colspan="2" class="sms-code-network">
+    <ul>
+      
+        <li>
+          <span class="sms-code">21212</span>
+          <span class="sms-network">(any)</span>
+        </li>
+      
+    </ul>
+  </td>
+</tr><tr>
+  <td class="sms-country">United Kingdom</td>
+  <td colspan="2" class="sms-code-network">
+    <ul>
+      
+        <li>
+          <span class="sms-code">86444</span>
+          <span class="sms-network">Vodafone, Orange, 3, O2</span>
+        </li>
+      
+    </ul>
+  </td>
+</tr><tr>
+  <td class="sms-country">Indonesia</td>
+  <td colspan="2" class="sms-code-network">
+    <ul>
+      
+        <li>
+          <span class="sms-code">89887</span>
+          <span class="sms-network">AXIS, 3, Telkomsel</span>
+        </li>
+      
+    </ul>
+  </td>
+</tr><tr>
+  <td class="sms-country">Ireland</td>
+  <td colspan="2" class="sms-code-network">
+    <ul>
+      
+        <li>
+          <span class="sms-code">51210</span>
+          <span class="sms-network">O2</span>
+        </li>
+      
+    </ul>
+  </td>
+</tr><tr>
+  <td class="sms-country">India</td>
+  <td colspan="2" class="sms-code-network">
+    <ul>
+      
+        <li>
+          <span class="sms-code">53000</span>
+          <span class="sms-network">Bharti Airtel, Videocon</span>
+        </li>
+      
+    </ul>
+  </td>
+</tr><tr>
+  <td class="sms-country">Jordan</td>
+  <td colspan="2" class="sms-code-network">
+    <ul>
+      
+        <li>
+          <span class="sms-code">90903</span>
+          <span class="sms-network">Zain</span>
+        </li>
+      
+    </ul>
+  </td>
+</tr><tr>
+  <td class="sms-country">New Zealand</td>
+  <td colspan="2" class="sms-code-network">
+    <ul>
+      
+        <li>
+          <span class="sms-code">8987</span>
+          <span class="sms-network">Vodafone, Telecom NZ</span>
+        </li>
+      
+    </ul>
+  </td>
+</tr><tr>
+  <td class="sms-country">United States</td>
+  <td colspan="2" class="sms-code-network">
+    <ul>
+      
+        <li>
+          <span class="sms-code">40404</span>
+          <span class="sms-network">(any)</span>
+        </li>
+      
+    </ul>
+  </td>
+</tr>
+    </tbody>
+  </table>
+</div>
+
+          </p>
+        </div>
+      </div>
+    </div>
+    
+
+      
+      
+
+      <div class="content-bubble-arrow"></div>
+      
+      
+      
+        <table cellspacing="0" class="columns">
+          <tbody>
+            <tr>
+              <td id="content" class="round-left column">
+                                <div class="wrapper">
+                  
+                  
+
+  
+
+
+
+
+  <div class="profile-user">
+    <div id="user_50393960" class="user ">
+      <h2 class="thumb clearfix">
+        <a href="/account/profile_image/BillGates?hreflang=en"><img alt="" border="0" height="73" id="profile-image" src="http://a2.twimg.com/profile_images/486782671/Picture_18_bigger.png" valign="middle" width="73" /></a>
+        <div class="screen-name">BillGates</div>
+      </h2>
+    </div>
+  </div>
+
+
+
+  <div id="similar_to_followed"></div>
+
+<div class="section">
+
+  <div id="timeline_heading" style="display: none;">
+    <h1 id="heading"></h1>
+  </div>
+  <ol id='timeline' class='statuses'>
+            <li class="hentry u-BillGates status latest-status" id="status_53119680302415872"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">A fun interview Melinda &amp; I did with Warren from India - <a href="http://bit.ly/hOPDuH" class="tweet-url web" rel="nofollow" target="_blank">http://bit.ly/hOPDuH</a> - an incredible trip, thanks to everyone who participated...</span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/53119680302415872">
+    <span class="published timestamp" data="{time:'Wed Mar 30 15:41:33 +0000 2011'}">7:41 AM Mar 30th</span></a>
+  <span>via web</span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_50846743734140928"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">Today is World TB day – <a href="http://bit.ly/fEuSNS" class="tweet-url web" rel="nofollow" target="_blank">http://bit.ly/fEuSNS</a> - more on some great work and innovation we saw here in India at the L.R.S. Institute</span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/50846743734140928">
+    <span class="published timestamp" data="{time:'Thu Mar 24 09:09:43 +0000 2011'}">1:09 AM Mar 24th</span></a>
+  <span>via web</span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_50430601186123776"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">A photo - learning from partners and community members in Patna, Bihar.  Incredible start to the day… <a href="http://twitpic.com/4cc7up" class="tweet-url web" rel="nofollow" target="_blank">http://twitpic.com/4cc7up</a></span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/50430601186123776">
+    <span class="published timestamp" data="{time:'Wed Mar 23 05:36:06 +0000 2011'}">9:36 PM Mar 22nd</span></a>
+  <span>via <a href="http://twitpic.com" rel="nofollow">Twitpic</a></span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_50403784937054208"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">It’s great to be back in India – Melinda and I are headed up to Bihar to see the progress they're making of particularly tough problems.</span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/50403784937054208">
+    <span class="published timestamp" data="{time:'Wed Mar 23 03:49:33 +0000 2011'}">7:49 PM Mar 22nd</span></a>
+  <span>via web</span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          
+<li  class="hentry u-gatesfoundation share status" id="status_50402345749725184"
+>
+      <span class="status-body">
+              <span class="big-retweet-icon" title="Retweets from people you follow appear in your timeline."></span>
+                    <strong><a href="http://twitter.com/gatesfoundation" class="tweet-url screen-name">gatesfoundation</a></strong>
+        
+                  <span class="entry-content">&quot;India is also a hotbed of innovation.&quot; -- Melinda Gates on today's <a href="/search?q=%23TEDxChange" title="#TEDxChange" class="tweet-url hashtag" rel="nofollow">#TEDxChange</a> talks: <a href="http://bit.ly/gHzdQ3" class="tweet-url web" rel="nofollow" target="_blank">http://bit.ly/gHzdQ3</a></span>
+            <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/gatesfoundation/status/50296702745321472">
+    <span class="published timestamp" data="{time:'Tue Mar 22 20:44:03 +0000 2011'}">12:44 PM Mar 22nd</span></a>
+  <span>via web</span>
+    
+  </span>
+      
+        <span class="meta entry-meta retweet-meta">
+          <span class="shared-content">Retweeted by <a href="/BillGates" class="screen-name timestamp-title" data="&#123;time:&quot;Wed Mar 23 03:43:50 +0000 2011&quot;&#125;" title="9 days ago">BillGates</a> and 100+ others</span>
+        </span>
+      
+            <ul class="meta-data clearfix">
+</ul>
+    </span>
+  </li >
+          
+<li  class="hentry u-gatesfoundation share status" id="status_48964613005524992"
+>
+      <span class="status-body">
+              <span class="big-retweet-icon" title="Retweets from people you follow appear in your timeline."></span>
+                    <strong><a href="http://twitter.com/gatesfoundation" class="tweet-url screen-name">gatesfoundation</a></strong>
+        
+                  <span class="entry-content">Blog: Melinda Gates on using lessons from Coca-Cola to prevent cholera: <a href="http://bit.ly/emg4QQ" class="tweet-url web" rel="nofollow" target="_blank">http://bit.ly/emg4QQ</a> <a href="/search?q=%23TEDxChange" title="#TEDxChange" class="tweet-url hashtag" rel="nofollow">#TEDxChange</a> <a href="/search?q=%23globalhealth" title="#globalhealth" class="tweet-url hashtag" rel="nofollow">#globalhealth</a></span>
+            <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/gatesfoundation/status/48439455371108352">
+    <span class="published timestamp" data="{time:'Thu Mar 17 17:44:00 +0000 2011'}">9:44 AM Mar 17th</span></a>
+  <span>via <a href="http://cotweet.com/?utm_source=sp1" rel="nofollow">CoTweet</a></span>
+    
+  </span>
+      
+        <span class="meta entry-meta retweet-meta">
+          <span class="shared-content">Retweeted by <a href="/BillGates" class="screen-name timestamp-title" data="&#123;time:&quot;Sat Mar 19 04:30:48 +0000 2011&quot;&#125;" title="13 days ago">BillGates</a> and 100+ others</span>
+        </span>
+      
+            <ul class="meta-data clearfix">
+</ul>
+    </span>
+  </li >
+          <li class="hentry u-BillGates status" id="status_45997909937893376"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">In about an hour: a live stream of my discussion w/Harvey Mudd &amp; Pomona College students @ 5pm PST - <a href="http://b-gat.es/e7FWhP" class="tweet-url web" rel="nofollow" target="_blank">http://b-gat.es/e7FWhP</a></span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/45997909937893376">
+    <span class="published timestamp" data="{time:'Fri Mar 11 00:02:10 +0000 2011'}">4:02 PM Mar 10th</span></a>
+  <span>via web</span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_45600072083324929"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">Sal Khan’s TED talk plus more info on the approach and impact of his Los Altos school project - <a href="http://b-gat.es/evn9QR" class="tweet-url web" rel="nofollow" target="_blank">http://b-gat.es/evn9QR</a></span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/45600072083324929">
+    <span class="published timestamp" data="{time:'Wed Mar 09 21:41:19 +0000 2011'}">1:41 PM Mar 9th</span></a>
+  <span>via web</span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_43832703530967040"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">TED posted one of our talks – <a href="http://b-gat.es/gCKMbK" class="tweet-url web" rel="nofollow" target="_blank">http://b-gat.es/gCKMbK</a> - this one looks at the impact state budgets have on education and our young people.</span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/43832703530967040">
+    <span class="published timestamp" data="{time:'Sat Mar 05 00:38:25 +0000 2011'}">4:38 PM Mar 4th</span></a>
+  <span>via web</span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_43388033688535040"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">@<a class="tweet-url username" href="/SteveCase" rel="nofollow">SteveCase</a> Thank you, Steve. This is an issue we both care a lot about and I'm happy to have brought more attention to it at <a href="/search?q=%23TED" title="#TED" class="tweet-url hashtag" rel="nofollow">#TED</a>.</span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/43388033688535040">
+    <span class="published timestamp" data="{time:'Thu Mar 03 19:11:27 +0000 2011'}">11:11 AM Mar 3rd</span></a>
+  <span>via web</span>
+    
+  <a href="http://twitter.com/SteveCase/status/43373638757515265">in reply to SteveCase</a></span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_43386815067062272"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">@<a class="tweet-url username" href="/glickman" rel="nofollow">glickman</a> Thank you!  It was an honor to have some of the people who inspire me on stage at TED and to see the great response they received.</span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/43386815067062272">
+    <span class="published timestamp" data="{time:'Thu Mar 03 19:06:37 +0000 2011'}">11:06 AM Mar 3rd</span></a>
+  <span>via web</span>
+    
+  <a href="http://twitter.com/glickman/status/43370220231995392">in reply to glickman</a></span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_43385005422026752"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">Just finished talk on state budgets and the impact on education in the U.S. Some more posted here: <a href="http://b-gat.es/hkXX4q" class="tweet-url web" rel="nofollow" target="_blank">http://b-gat.es/hkXX4q</a></span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/43385005422026752">
+    <span class="published timestamp" data="{time:'Thu Mar 03 18:59:26 +0000 2011'}">10:59 AM Mar 3rd</span></a>
+  <span>via web</span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_43322445242970112"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">Videos and more on Khan Academy’s plans to transform education – an incredible talk at TED yesterday -  <a href="http://b-gat.es/g82dhc" class="tweet-url web" rel="nofollow" target="_blank">http://b-gat.es/g82dhc</a>   <a href="/search?q=%23TED" title="#TED" class="tweet-url hashtag" rel="nofollow">#TED</a></span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/43322445242970112">
+    <span class="published timestamp" data="{time:'Thu Mar 03 14:50:50 +0000 2011'}">6:50 AM Mar 3rd</span></a>
+  <span>via web</span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_43066397978398720"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">The team is getting ready to hit the stage at TED... <a href="http://twitpic.com/45ga83" class="tweet-url web" rel="nofollow" target="_blank">http://twitpic.com/45ga83</a></span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/43066397978398720">
+    <span class="published timestamp" data="{time:'Wed Mar 02 21:53:24 +0000 2011'}">1:53 PM Mar 2nd</span></a>
+  <span>via <a href="http://www.twitter.com" rel="nofollow">Twitter for Windows Phone</a></span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_43026353469132800"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">Taking the stage at TED today with some amazing guest speakers - more on their ideas and work here: <a href="http://b-gat.es/gQBcXR" class="tweet-url web" rel="nofollow" target="_blank">http://b-gat.es/gQBcXR</a></span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/43026353469132800">
+    <span class="published timestamp" data="{time:'Wed Mar 02 19:14:16 +0000 2011'}">11:14 AM Mar 2nd</span></a>
+  <span>via web</span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_42290840957222912"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">Thank you for your comments on my annual letter.  Some more on excellence in teaching here: <a href="http://bit.ly/e7wxlX" class="tweet-url web" rel="nofollow" target="_blank">http://bit.ly/e7wxlX</a></span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/42290840957222912">
+    <span class="published timestamp" data="{time:'Mon Feb 28 18:31:36 +0000 2011'}">10:31 AM Feb 28th</span></a>
+  <span>via web</span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_41561550267486208"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">“Human potential is far from exhausted” – Warren’s annual Berkshire letter has posted -  <a href="http://bit.ly/enNDzn" class="tweet-url web" rel="nofollow" target="_blank">http://bit.ly/enNDzn</a></span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/41561550267486208">
+    <span class="published timestamp" data="{time:'Sat Feb 26 18:13:40 +0000 2011'}">10:13 AM Feb 26th</span></a>
+  <span>via web</span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_38000208315027456"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">Eradicating Polio- <a href="http://bit.ly/fSFAf3" class="tweet-url web" rel="nofollow" target="_blank">http://bit.ly/fSFAf3</a> - putting excerpts from my letter on GatesNotes and am looking forward to seeing your comments…</span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/38000208315027456">
+    <span class="published timestamp" data="{time:'Wed Feb 16 22:22:10 +0000 2011'}">2:22 PM Feb 16th</span></a>
+  <span>via web</span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_37635263173894144"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">Congratulations to my dear friend Warren Buffett on National Medal of Freedom - <a href="http://bit.ly/eN9rh1" class="tweet-url web" rel="nofollow" target="_blank">http://bit.ly/eN9rh1</a></span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/37635263173894144">
+    <span class="published timestamp" data="{time:'Tue Feb 15 22:12:00 +0000 2011'}">2:12 PM Feb 15th</span></a>
+  <span>via web</span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+          <li class="hentry u-BillGates status" id="status_36581179113078784"
+>
+    <span class="status-body">
+    <span class="status-content">
+                  <span class="entry-content">A nice review of my friend Nathan Myhrvold's cookbook which is really quite good - <a href="http://on.wsj.com/f0K5ET" class="tweet-url web" rel="nofollow" target="_blank">http://on.wsj.com/f0K5ET</a></span>
+          </span>
+    <span class="meta entry-meta" data='{}'>
+  <a class="entry-date" rel="bookmark" href="http://twitter.com/BillGates/status/36581179113078784">
+    <span class="published timestamp" data="{time:'Sun Feb 13 00:23:27 +0000 2011'}">4:23 PM Feb 12th</span></a>
+  <span>via web</span>
+    
+  </span>
+
+        <ul class="meta-data clearfix">
+</ul>
+  </span>
+</li>
+      </ol>
+
+  <div id="pagination">
+    <a href="/BillGates?max_id=53119680302415872&amp;page=2&amp;twttr=true" class="round more" id="more" rel="next">more</a>  </div>
+
+</div>
+
+
+
+
+
+                </div>
+                              </td>
+              
+                <td id="side_base" class="column round-right">
+                                  
+                  <div id="side">
+                      
+<div id="profile" class="section profile-side">
+  <span class="section-links">
+      </span>
+  <address>
+    <ul class="about vcard entry-author">
+      
+        <li class="verified-profile"><a href="/help/verified"><em>Verified Account</em></a></li>
+      
+      
+      
+        <li><span class="label">Name</span> <span class="fn">Bill Gates</span></li>
+                  <li><span class="label">Location</span> <span class="adr">Seattle, WA</span></li>
+                          <li><span class="label">Web</span> <a href="http://www.thegatesnotes.com" class="url" rel="me nofollow" target="_blank">http://www.thegat...</a></li>
+                          <li id="bio"><span class="label">Bio</span> <span class="bio">Sharing cool things I'm learning through my foundation work and other interests...</span></li>
+              
+    </ul>
+  </address>
+        
+
+
+<div class="stats">
+  <table>
+    <tr>
+      <td>
+      
+        
+
+<a href="/BillGates/following" id="following_count_link" class="link-following_page" rel="me" title="See who BillGates is following">
+  <span id="following_count" class="stats_count numeric">63 </span>
+  <span class="label">Following</span>
+</a>
+
+
+      </td>
+      <td>
+
+<a href="/BillGates/followers" id="follower_count_link" class="link-followers_page" rel="me" title="See who's following BillGates">
+  <span id="follower_count" class="stats_count numeric">2,407,290 </span>
+  <span class="label">Followers</span>
+</a>
+
+</td>
+              <td>
+
+<a href="/BillGates/lists/memberships" id="lists_count_link" class="link-lists_page" rel="me" title="See which lists BillGates is on">
+  <span id="lists_count" class="stats_count numeric">68,964 </span>
+  <span class="label">Listed</span>
+</a>
+
+</td>
+          </tr>
+  </table>
+  
+</div>
+  
+</div>
+
+  <ul id="primary_nav" class="sidebar-menu">
+    <li id="profile_tab"><a href="/BillGates" accesskey="u"><span id="update_count" class="stat_count">271</span><span>Tweets</span></a></li>
+    <li id="profile_favorites_tab"><a href="http://twitter.com/BillGates/favorites" accesskey="f"><span>Favorites</span></a></li>
+  </ul>
+
+
+
+  
+      
+
+<hr/>
+
+
+  <div id="following">
+              
+    <h2 class="sidebar-title" id="fm_menu"><span>Following</span></h2>
+          <div class="sidebar-menu">
+  <div id="following_list">
+    
+  <span class="vcard">
+    <a href="/PaulGAllen" class="url" hreflang="en" rel="contact" title="Paul Allen"><img alt="Paul Allen" class="photo fn" height="24" src="http://a1.twimg.com/profile_images/95218752/pallen_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/SteveCase" class="url" hreflang="en" rel="contact" title="Steve Case"><img alt="Steve Case" class="photo fn" height="24" src="http://a2.twimg.com/profile_images/555579649/steve_case_wsj_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/JeffDSachs" class="url" hreflang="en" rel="contact" title="Jeffrey D. Sachs"><img alt="Jeffrey D. Sachs" class="photo fn" height="24" src="http://a2.twimg.com/profile_images/715891202/JSachs1_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/DFID_UK" class="url" hreflang="en" rel="contact" title="DFID"><img alt="DFID" class="photo fn" height="24" src="http://a0.twimg.com/profile_images/1180727549/Twitter-avatar_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/ClintonTweet" class="url" hreflang="en" rel="contact" title="Clinton Foundation"><img alt="Clinton Foundation" class="photo fn" height="24" src="http://a1.twimg.com/profile_images/420719757/wjcf_logo_RGB-TopAlign-73x73_mini.gif" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/GdnDevelopment" class="url" hreflang="en" rel="contact" title="Global Development"><img alt="Global Development" class="photo fn" height="24" src="http://a3.twimg.com/profile_images/1175407963/G_twitter_glob_dev_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/whonews" class="url" hreflang="en" rel="contact" title="WHO News"><img alt="WHO News" class="photo fn" height="24" src="http://a3.twimg.com/profile_images/1291287190/35fe8a40-166d-4255-a79f-963db739a528_mini.png" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/WaitingSuperman" class="url" hreflang="en" rel="contact" title="WaitingForSuperman"><img alt="WaitingForSuperman" class="photo fn" height="24" src="http://a0.twimg.com/profile_images/1105065361/wfs_twittericon_pledgepromotion_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/USAID" class="url" hreflang="en" rel="contact" title="USAID"><img alt="USAID" class="photo fn" height="24" src="http://a1.twimg.com/profile_images/1219929688/FB_50th_Logo_and_for_Twitter_mini.JPG" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/earthinstitute" class="url" hreflang="en" rel="contact" title="Earth Institute"><img alt="Earth Institute" class="photo fn" height="24" src="http://a3.twimg.com/profile_images/697242792/EarthInst_twit_mini.png" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/DonorsChoose" class="url" hreflang="en" rel="contact" title="DonorsChoose"><img alt="DonorsChoose" class="photo fn" height="24" src="http://a0.twimg.com/profile_images/82396671/twitter_mini.JPG" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/CaseFoundation" class="url" hreflang="en" rel="contact" title="Case Foundation"><img alt="Case Foundation" class="photo fn" height="24" src="http://a0.twimg.com/profile_images/1164198964/CASE_stack_2C_white-background_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/Malaria_Envoy" class="url" hreflang="en" rel="contact" title="Malaria Envoy"><img alt="Malaria Envoy" class="photo fn" height="24" src="http://a0.twimg.com/profile_images/743276375/0311_Malaria_profile_d_mini.gif" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/globalfundnews" class="url" hreflang="en" rel="contact" title="The Global Fund"><img alt="The Global Fund" class="photo fn" height="24" src="http://a3.twimg.com/profile_images/303367268/TGF_THUMB_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/TeachForAmerica" class="url" hreflang="en" rel="contact" title="Teach For America"><img alt="Teach For America" class="photo fn" height="24" src="http://a2.twimg.com/profile_images/1235736129/teachforamerica_mini.jpeg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/unfoundation" class="url" hreflang="en" rel="contact" title="UN Foundation"><img alt="UN Foundation" class="photo fn" height="24" src="http://a0.twimg.com/profile_images/307314715/unf_icon_logo_mini.gif" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/TBAlliance" class="url" hreflang="en" rel="contact" title="TB Alliance"><img alt="TB Alliance" class="photo fn" height="24" src="http://a2.twimg.com/profile_images/654983282/logo_only_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/FightingMalaria" class="url" hreflang="en" rel="contact" title="Malaria Consortium"><img alt="Malaria Consortium" class="photo fn" height="24" src="http://a0.twimg.com/profile_images/400177507/Malaria_Consortium2_mini.JPG" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/usaid_info" class="url" hreflang="en" rel="contact" title="USAID"><img alt="USAID" class="photo fn" height="24" src="http://a1.twimg.com/profile_images/67116703/usaid_mini.png" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/KatieS" class="url" hreflang="en" rel="contact" title="Katie Jacobs Stanton"><img alt="Katie Jacobs Stanton" class="photo fn" height="24" src="http://a1.twimg.com/profile_images/1137754730/Picture_24_mini.png" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/davos" class="url" hreflang="en" rel="contact" title="World Economic Forum"><img alt="World Economic Forum" class="photo fn" height="24" src="http://a1.twimg.com/profile_images/1192784135/forum-logo_mini.gif" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/sundancefest" class="url" hreflang="en" rel="contact" title="SundanceFilmFestival"><img alt="SundanceFilmFestival" class="photo fn" height="24" src="http://a2.twimg.com/profile_images/1203419590/AVATAR_NEW_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/mattbish" class="url" hreflang="en" rel="contact" title="matthew bishop"><img alt="matthew bishop" class="photo fn" height="24" src="http://a2.twimg.com/profile_images/954215523/Matthew_Bishop_mini.JPG" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/inafried" class="url" hreflang="en" rel="contact" title="Ina Fried"><img alt="Ina Fried" class="photo fn" height="24" src="http://a1.twimg.com/profile_images/563815380/blackberry_Ina_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/ashleytisdale" class="url" hreflang="en" rel="contact" title="Ashley Tisdale"><img alt="Ashley Tisdale" class="photo fn" height="24" src="http://a2.twimg.com/profile_images/1209831628/IMG_0072_mini.JPG" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/MSFTnews" class="url" hreflang="en" rel="contact" title="Microsoft News"><img alt="Microsoft News" class="photo fn" height="24" src="http://a3.twimg.com/profile_images/1158564203/MSTwitterIcon_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/CarnegieFdn" class="url" hreflang="en" rel="contact" title="Carnegie Foundation"><img alt="Carnegie Foundation" class="photo fn" height="24" src="http://a0.twimg.com/profile_images/1268281659/cf-fb_mini.png" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/nothingbutnets" class="url" hreflang="en" rel="contact" title="Nothing But Nets"><img alt="Nothing But Nets" class="photo fn" height="24" src="http://a0.twimg.com/profile_images/265381269/nbn_logo_mini.gif" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/Heifer" class="url" hreflang="en" rel="contact" title="Heifer International"><img alt="Heifer International" class="photo fn" height="24" src="http://a0.twimg.com/profile_images/774512529/heifer_new_logo_square_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/ONECampaign" class="url" hreflang="en" rel="contact" title="ONE"><img alt="ONE" class="photo fn" height="24" src="http://a1.twimg.com/profile_images/779785235/Untitled-1_normal_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/MalariaNoMore" class="url" hreflang="en" rel="contact" title="Malaria No More"><img alt="Malaria No More" class="photo fn" height="24" src="http://a2.twimg.com/profile_images/1124548442/27517_20588556840_3197_n_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/WorldFoodPrize" class="url" hreflang="en" rel="contact" title="World Food Prize"><img alt="World Food Prize" class="photo fn" height="24" src="http://a2.twimg.com/profile_images/243558406/smalllogo2_mini.gif" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/ifpri" class="url" hreflang="en" rel="contact" title="ifpri"><img alt="ifpri" class="photo fn" height="24" src="http://a1.twimg.com/profile_images/198516919/logosmall_mini.gif" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/rotary" class="url" hreflang="en" rel="contact" title="Rotary International"><img alt="Rotary International" class="photo fn" height="24" src="http://a2.twimg.com/profile_images/725972021/ri_logo_mini.jpg" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/WFP" class="url" hreflang="en" rel="contact" title="World Food Programme"><img alt="World Food Programme" class="photo fn" height="24" src="http://a3.twimg.com/profile_images/899668508/twitter_profile_03_mini.png" width="24" /></a>  </span>
+
+
+  <span class="vcard">
+    <a href="/GAVIAlliance" class="url" hreflang="en" rel="contact" title="GAVI Alliance"><img alt="GAVI Alliance" class="photo fn" height="24" src="http://a3.twimg.com/profile_images/1168422796/5e7534c3-531d-45f4-a69b-589656027c2c_mini.gif" width="24" /></a>  </span>
+
+
+  </div>
+    <div id="friends_view_all">
+    <a href="/BillGates/following" rel="me">View all&hellip;</a>
+  </div>
+  
+</div>
+
+        <hr/>
+  </div>
+
+
+
+
+
+  <div id="rssfeed">
+    <a href="/statuses/user_timeline/50393960.rss" class="xref rss profile-rss" rel="alternate" type="application/rss+xml">RSS feed of BillGates's tweets</a>
+     <a href="/favorites/50393960.rss" class="xref rss favorites-rss" rel="alternate" type="application/rss+xml">RSS feed of BillGates's favorites</a>
+  </div>
+
+
+
+
+                  </div>
+                                </td>
+              
+            </tr>
+          </tbody>
+        </table>
+      
+
+      
+  <div id="footer" class="round">
+      <h3 class="offscreen">Footer</h3>
+      
+      
+      <ul class="footer-nav">
+          <li class="first">&copy; 2011 Twitter</li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/about/contact">Contact</a></li>
+          <li><a href="http://blog.twitter.com">Blog</a></li>
+          <li><a href="http://status.twitter.com">Status</a></li>
+                      <li><a href="/about/resources">Resources</a></li>
+                    <li><a href="http://dev.twitter.com/">API</a></li>
+                      <li><a href="http://twitter.com/business">Business</a></li>
+                    <li><a href="http://support.twitter.com">Help</a></li>
+          <li><a href="/jobs">Jobs</a></li>
+          <li><a href="/tos">Terms</a></li>
+          <li><a href="/privacy">Privacy</a></li>
+      </ul>
+  </div>
+
+
+
+    </div>
+
+    
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js" type="text/javascript"></script>
+<script src="http://a3.twimg.com/a/1301438647/javascripts/twitter.js?1301337105" type="text/javascript"></script>
+<script src="http://a2.twimg.com/a/1301438647/javascripts/lib/jquery.tipsy.min.js?1301337105" type="text/javascript"></script>
+<script type='text/javascript' src='http://www.google.com/jsapi'></script>
+<script src="http://a1.twimg.com/a/1301438647/javascripts/lib/gears_init.js?1301337105" type="text/javascript"></script>
+<script src="http://a2.twimg.com/a/1301438647/javascripts/lib/mustache.js?1301337105" type="text/javascript"></script>
+<script src="http://a3.twimg.com/a/1301438647/javascripts/geov1.js?1301337105" type="text/javascript"></script>
+<script src="http://a1.twimg.com/a/1301438647/javascripts/api.js?1301337105" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+$.cookie('tz_offset_sec', (-1 * (new Date()).getTimezoneOffset())*60);
+//]]>
+</script>
+  <script src="http://a2.twimg.com/a/1301438647/javascripts/lib/mustache.js?1301337105" type="text/javascript"></script>
+<script src="http://a3.twimg.com/a/1301438647/javascripts/dismissable.js?1301337105" type="text/javascript"></script>
+  
+
+<script type="text/javascript">
+//<![CDATA[
+  page.user_screenname = 'BillGates';
+  page.user_fullname = 'Bill Gates';
+      page.controller_name = 'AccountController';
+      page.action_name = 'profile';
+      twttr.form_authenticity_token = '868f10ec34071c233fb338b8ad9dfa0503698d91';
+      $.ajaxSetup({ data: { authenticity_token: '868f10ec34071c233fb338b8ad9dfa0503698d91' } });
+
+      // FIXME: Reconcile with the kinds on the Status model.
+      twttr.statusKinds = {
+        UPDATE: 1,
+        SHARE: 2
+      };
+      twttr.ListPerUserLimit = 20;
+
+      
+
+    
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+
+      $( function () {
+        
+      $("#sms_codes_link").hoverTip("#sms_codes");
+     initializePage();
+
+  
+
+  if (twttr.geo !== undefined) {
+    twttr.geo.options.show_place_details_in_map = true;
+  }
+
+(function(){function b(){var c=location.href.split("#!")[1];if(c){window.location.hash = "";window.location.pathname = c.replace(/^([^/])/,"/$1");}else return true}var a="onhashchange"in window;if(!a&&window.setAttribute){window.setAttribute("onhashchange","return;");a=typeof window.onhashchange==="function"}if(a)$(window).bind("hashchange",b);else{var d=function(){b()&&setTimeout(d,250)};setTimeout(d,250)}}());
+  $('#signin_menu').isSigninMenu();
+
+      });
+    
+//]]>
+</script>
+
+        <!-- BEGIN google analytics -->
+
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+
+  <script type="text/javascript">
+
+    try {
+      var pageTracker = _gat._getTracker("UA-30775-6");
+      pageTracker._setDomainName("twitter.com");
+            pageTracker._setVar('Not Logged In');
+            pageTracker._setVar('lang: en');
+            pageTracker._initData();
+                    
+          pageTracker._trackPageview('/profile/not_logged_in/BillGates');
+                  } catch(err) { }
+
+  </script>
+
+  <!-- END google analytics -->
+
+
+
+
+    <div id="notifications"></div>
+
+
+    
+
+    
+
+  </body>
+
+</html>

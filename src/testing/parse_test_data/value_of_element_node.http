@@ -1,0 +1,11 @@
+http://value_of_element_node.com/fox.html
+<!doctype html>
+<html>
+  <head></head>
+  <body>
+    <div>
+      The <em>quick</em> brown
+fox <br>jumps   over the <b>lazy</b> dog.
+    </div>
+  </body>
+</html>

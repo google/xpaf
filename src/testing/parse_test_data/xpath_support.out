@@ -1,0 +1,29 @@
+url: "http://xpath_support.com/index.html"
+parser_outputs {
+  parser_name: "xpath_support"
+  relations {
+    subject: "boolean"
+    predicate: "val"
+    object: "1"
+  }
+  relations {
+    subject: "float"
+    predicate: "val"
+    object: "3.14"
+  }
+  relations {
+    subject: "count"
+    predicate: "val"
+    object: "2"
+  }
+  relations {
+    subject: "string"
+    predicate: "val"
+    object: "abc"
+  }
+  relations {
+    subject: "csv"
+    predicate: "val"
+    object: "1,2"
+  }
+}

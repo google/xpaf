@@ -1,0 +1,200 @@
+// Copyright 2011 Google Inc. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto2";
+
+package xpaf;
+
+import "src/post_processing_ops.proto";
+
+// Defines a query to be referenced by RelationTemplates.
+// Think of this as a variable.
+//
+// Note that query strings can be embedded directly inside RelationTemplates.
+// QueryDefs are mainly useful for avoiding query duplication and for advanced
+// features like extraction_regexp.
+//
+message QueryDef {
+  // Name for this query. Must match "[A-Za-z_]+".
+  // Queries are referenced in RelationTemplates via "%name%".
+  required string name = 1;
+
+  // The XPath query.
+  required string query = 2;
+
+  // A set of post-processing operations to perform on the query results.
+  // Operations are performed in the order given, and happen after url
+  // absolutization.
+  //
+  // For example, to extract "1000" from "Count: 1,000", one could use an
+  // ExtractOp to get "1,000" followed by a ReplaceOp to remove the comma.
+  //
+  // If any operation fails (e.g. if ExtractOp fails to extract anything), the
+  // result is voided. See individual operation descriptions for precise failure
+  // conditions.
+  //
+  // Note that operation failures do not affect result cardinalities or offsets.
+  // For example, if one query produces ["foo", void] and another produces
+  // [void, "bar"], both queries would be considered to have two results, and a
+  // MANY-to-MANY RelationTemplate between the two would yield zero relations.
+  repeated PostProcessingOp post_processing_ops = 3;
+};
+
+// Defines a group of queries that share a DOM root node.
+//
+// To ensure correctness, queries in MANY-to-MANY RelationTemplates should all
+// belong to the same group. Example situation where it's critical:
+//
+// node: {
+//   name: "foo_1"
+// }
+// node: {
+//   name: "foo_2"
+//   img: "bar_a"
+// }
+// node: {
+//   img: "bar_b"
+// }
+//
+// If we were to independently query for all names and all imgs, we'd
+// incorrectly associate foo_1 with bar_a.
+//
+message QueryGroupDef {
+  // Name for this group. Must match "[A-Za-z_]+".
+  // Queries from within a group can be referenced in RelationTemplates via
+  // %group_name.query_name%.
+  required string name = 1;
+
+  // Query that produces root nodes for the queries below. Must return an
+  // XPATH_NODESET.
+  required string root_query = 2;
+
+  // The individual queries in this group. Query strings will be directly
+  // appended to root_query. Each query must return an XPATH_NODESET containing
+  // at most one result node per root node, and each result node must be a
+  // descendant of its corresponding root node.
+  //
+  // When multiple queries from the same QueryGroupDef are referenced in the
+  // same RelationTemplate, same-relation results from those queries are
+  // guaranteed to share the same root node.
+  repeated QueryDef query_defs = 3;
+};
+
+// Template for a parsed relation. Parsers emit {subject, predicate, object}
+// triples specified by RelationTemplates.
+//
+// To use a QueryDef as a subject or object, wrap the query name in percent
+// signs. For example:
+//   subject: "%url%"
+//   predicate: "follows"
+//   object: "%friend_url%".
+//
+// Queries from within a QueryGroupDef can be referenced via
+// %group_name.query_name%.
+//
+// XPath queries may also be inlined; any subject or object whose name starts
+// with "/" is assumed to be a query. Predicates may not contain queries (at
+// least for now).
+//
+// Relations may also contain {name, value} annotations, where 'name' is a
+// string literal and 'value' may be a literal, reference, or inlined query.
+//
+// Subject, object, and annotation values each have an associated cardinality,
+// either ONE or MANY. Those with cardinality MANY must all produce the same
+// number of results, N; those with cardinality ONE must produce zero or one
+// results and will be duplicated for each of the N relations.
+//
+// For example, if subject has cardinality ONE and object has cardinality MANY,
+// we output one relation per object, duplicating the subject for each relation.
+// On the other hand, if both have cardinality MANY, we require that they
+// produce the same number of results, N, and we emit N relations.
+//
+// If either subject or object violates these rules, the entire relation is
+// skipped. If an annotation violates these rules, just that annotation is
+// skipped.
+//
+// See ComputeNumRelations() in xpaf_parser.cc for the gory details.
+//
+message RelationTemplate {
+  required string subject = 1;
+  required string predicate = 2;
+  required string object = 3;
+
+  enum Cardinality {
+    ONE = 0;
+    MANY = 1;
+  };
+
+  // Note: If subject_cardinality and object_cardinality are both MANY, we
+  // recommend that 'subject' and 'object' belong to the same QueryGroupDef
+  // (for reasons described above).
+  required Cardinality subject_cardinality = 4;
+  required Cardinality object_cardinality = 5;
+
+  message AnnotationTemplate {
+    required string name = 1;
+    required string value = 2;
+
+    // Note: If this is MANY, we recommend that 'value' belong to the same
+    // QueryGroupDef as anything else with cardinality MANY.
+    required Cardinality value_cardinality = 3;
+  };
+  repeated AnnotationTemplate annotation_tmpls = 6;
+
+  // Arbitrary string to be copied verbatim into each resulting relation.
+  // For example, applications that differentiate between "edge" relations and
+  // "attribute" relations can use this field to specify the relation type.
+  // TODO(sadovsky): Switch to bytes.
+  optional string userdata = 7;
+
+  // If set, we only output this relation for urls that match url_regexp using
+  // RE2::PartialMatch().
+  optional string url_regexp = 8;
+
+  // The following two options are not currently implemented.
+
+  // We CHECK that <= this many relations are produced. -1 means no max.
+  // optional int32 max_instances = 9 [default = -1];
+
+  // We CHECK that >= this many relations are produced. -1 means no min.
+  // optional int32 min_instances = 10 [default = -1];
+};
+
+// Defines a single parser.
+message XpafParserDef {
+  required string parser_name = 1;
+
+  // If set, ShouldParse(url) will only return true if url matches url_regexp
+  // using RE2::PartialMatch(). Parse(url) does not check url_regexp.
+  optional string url_regexp = 3;
+
+  // Individual queries.
+  repeated QueryDef query_defs = 4;
+
+  // Query groups.
+  repeated QueryGroupDef query_group_defs = 5;
+
+  // Relations this parser should output.
+  repeated RelationTemplate relation_tmpls = 6;
+
+  // Arbitrary string associated with this parser definition. Not used by
+  // XpafParser{,Master} and not written to ParsedDocument.
+  // Some unit tests use this field to specify expectations.
+  // TODO(sadovsky): Switch to bytes.
+  optional string userdata = 7;
+};
+
+message XpafParserDefs {
+  repeated XpafParserDef parser_defs = 1;
+};

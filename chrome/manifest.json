@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "XPath Helper",
+  "version": "1.0.13",
+  "description": "Extract, edit, and evaluate XPath queries with ease.",
+  "background": {
+    "page": "background.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["content.css"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "32": "static/icon32.png",
+    "48": "static/icon48.png",
+    "128": "static/icon128.png"
+  },
+  "web_accessible_resources": [
+    "bar.css",
+    "bar.html",
+    "bar.js"
+  ]
+}

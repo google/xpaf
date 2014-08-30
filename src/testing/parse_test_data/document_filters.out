@@ -1,0 +1,9 @@
+url: "http://document_filters.com/foo.html"
+parser_outputs {
+  parser_name: "document_filters_url_regexp_accept"
+  relations {
+    subject: "foo"
+    predicate: "bar"
+    object: "baz"
+  }
+}

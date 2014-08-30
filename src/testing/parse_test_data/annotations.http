@@ -1,0 +1,29 @@
+http://annotations.com/adam.html
+<!doctype html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="name">Adam</div>
+    <table>
+      <tr>
+        <td class="v_fruit">Apple</td>
+        <td class="v_date">2002</td>
+        <td class="v_rating">4</td>
+      </tr>
+      <tr>
+        <td class="v_fruit">Banana</td>
+        <td class="v_date">2003</td>
+      </tr>
+      <tr>
+        <td class="v_fruit">Cherry</td>
+        <td class="v_date">2003</td>
+        <td class="v_rating">4</td>
+      </tr>
+      <tr>
+        <td class="v_fruit">Durian</td>
+        <td class="v_rating">5</td>
+      </tr>
+    </table>
+  </body>
+</html>

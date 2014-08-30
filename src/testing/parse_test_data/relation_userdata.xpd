@@ -1,0 +1,65 @@
+# Copyright 2011 Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Tests that relation userdata is copied to ParsedDocument.
+
+parser_defs {
+  parser_name: "relation_userdata"
+  url_regexp: "^http://relation_userdata.com/"
+
+  query_group_defs {
+    name: "friend"
+
+    root_query: "//table/tr"
+
+    query_defs {
+      name: "name"
+      query: "/td[@class='fr_name']"
+    }
+    query_defs {
+      name: "occupation"
+      query: "/td[@class='fr_occ']"
+    }
+  }
+
+  relation_tmpls {
+    subject: "//div[@id='name']"
+    predicate: "occupation"
+    object: "//div[@id='occ']"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+    userdata: "foo"
+  }
+
+  relation_tmpls {
+    subject: "//div[@id='name']"
+    predicate: "has_friend_with_name"
+    object: "%friend.name%"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+    userdata: "bar"
+  }
+
+  relation_tmpls {
+    subject: "%friend.name%"
+    predicate: "occupation"
+    object: "%friend.occupation%"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+    userdata: "baz"
+  }
+}

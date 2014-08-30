@@ -1,0 +1,25 @@
+http://extract_op.com/adam.html
+<!doctype html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="name">Adam</div>
+    <div id="occ">Engineer</div>
+    <table>
+      <tr>
+        <td class="fr_name">George</td>
+      </tr>
+      <tr>
+        <td class="fr_name">Melissa</td>
+        <td class="fr_occ">Banker</td>
+        <td class="fr_age">26</td>
+      </tr>
+      <tr>
+        <td class="fr_name">Jessica</td>
+        <td class="fr_occ">Lawyer</td>
+        <td class="fr_age">25</td>
+      </tr>
+    </table>
+  </body>
+</html>

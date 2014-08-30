@@ -1,0 +1,72 @@
+# Copyright 2011 Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Tests that ReplaceOp works as expected.
+
+parser_defs {
+  parser_name: "replace_op"
+  url_regexp: "^http://replace_op.com/"
+
+  query_defs {
+    name: "occ_replace_first_e_char"
+    query: "//div[@id='occ']"
+    post_processing_ops {
+      replace_op {
+        regexp: "e"
+        rewrite: "y"
+      }
+    }
+  }
+
+  query_defs {
+    name: "occ_replace_all_e_chars"
+    query: "//div[@id='occ']"
+    post_processing_ops {
+      replace_op {
+        regexp: "e"
+        rewrite: "y"
+        global: true
+      }
+    }
+  }
+
+  query_defs {
+    name: "name_replace_nothing"
+    query: "//div[@id='name']"
+    post_processing_ops {
+      replace_op {
+        regexp: "[Aa][Aa]"
+        rewrite: "oo"
+      }
+    }
+  }
+
+  relation_tmpls {
+    subject: "%occ_replace_first_e_char%"
+    predicate: "has_at_least_as_many_e_chars_as"
+    object: "%occ_replace_all_e_chars%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+
+  relation_tmpls {
+    subject: "Adam"
+    predicate: "is"
+    object: "%name_replace_nothing%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+}

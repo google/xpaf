@@ -1,0 +1,40 @@
+url: "http://relation_userdata.com/adam.html"
+parser_outputs {
+  parser_name: "relation_userdata"
+  relations {
+    subject: "Adam"
+    predicate: "occupation"
+    object: "Engineer"
+    userdata: "foo"
+  }
+  relations {
+    subject: "Adam"
+    predicate: "has_friend_with_name"
+    object: "George"
+    userdata: "bar"
+  }
+  relations {
+    subject: "Adam"
+    predicate: "has_friend_with_name"
+    object: "Melissa"
+    userdata: "bar"
+  }
+  relations {
+    subject: "Adam"
+    predicate: "has_friend_with_name"
+    object: "Jessica"
+    userdata: "bar"
+  }
+  relations {
+    subject: "Melissa"
+    predicate: "occupation"
+    object: "Banker"
+    userdata: "baz"
+  }
+  relations {
+    subject: "Jessica"
+    predicate: "occupation"
+    object: "Lawyer"
+    userdata: "baz"
+  }
+}

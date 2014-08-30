@@ -1,0 +1,24 @@
+http://zero_values.com/adam.html
+<!doctype html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="name">Adam</div>
+    <div id="occ">Engineer</div>
+    <table>
+      <tr>
+        <td class="fr_name">George</td>
+        <td class="fr_occ">Manager</td>
+      </tr>
+      <tr>
+        <td class="fr_name">Melissa</td>
+        <td class="fr_occ">Banker</td>
+      </tr>
+      <tr>
+        <td class="fr_name">Jessica</td>
+        <td class="fr_occ">Lawyer</td>
+      </tr>
+    </table>
+  </body>
+</html>

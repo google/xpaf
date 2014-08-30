@@ -1,0 +1,54 @@
+url: "http://extract_op.com/adam.html"
+parser_outputs {
+  parser_name: "extract_op"
+  relations {
+    subject: "Adam"
+    predicate: "foo"
+    object: "B"
+  }
+  relations {
+    subject: "Adam"
+    predicate: "foo"
+    object: "L"
+  }
+  relations {
+    subject: "Adam"
+    predicate: "bar"
+    object: "issa"
+  }
+  relations {
+    subject: "Adam"
+    predicate: "bar"
+    object: "sica"
+  }
+  relations {
+    subject: "issa"
+    predicate: "baz"
+    object: "26"
+    userdata: "not_from_group"
+  }
+  relations {
+    subject: "sica"
+    predicate: "baz"
+    object: "25"
+    userdata: "not_from_group"
+  }
+  relations {
+    subject: "issa"
+    predicate: "baz"
+    object: "26"
+    userdata: "from_group"
+  }
+  relations {
+    subject: "sica"
+    predicate: "baz"
+    object: "25"
+    userdata: "from_group"
+  }
+  relations {
+    subject: "Meli"
+    predicate: "qat"
+    object: "26"
+    userdata: "from_group"
+  }
+}

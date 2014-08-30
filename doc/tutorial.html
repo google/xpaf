@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tutorial - XPaF</title>
+  <link rel="stylesheet" type="text/css" href="xpaf.css">
+</head>
+<body>
+<div id="content">
+<h1 id="title">XPaF Tutorial</h1>
+
+<h2>Overview</h2>
+
+<p>In this tutorial, we demonstrate how to write a parser that extracts data from Twitter profile pages, showcasing various features of the XPaF parsing framework along the way.</p>
+
+<h2>Getting started</h2>
+
+<p>Throughout this tutorial, we'll use a <a href="http://xpaf.googlecode.com/hg/src/testing/xpaf_bm_data/twitter_billgates.http">snapshot of Bill Gates's Twitter page</a> as our working example. Note that the <a href="http://twitter.com/BillGates">current version</a> of this page looks somewhat different, so our parsers would need tweaking.</p>
+
+<p>Before you proceed, we strongly encourage you to install the <a href="https://chrome.google.com/webstore/detail/hgimnogjllphhhkhlmebbmlgjoejdpjl">XPath Helper Chrome extension</a>, which makes it easy to extract, edit, and evaluate XPath queries on any webpage. Then, as you make your way through this tutorial, you can use the extension to identify XPath queries for fields we're trying to extract, and then simplify those queries by editing them in the console. You can also take queries directly from the parsers below, paste them into the console, and see their evaluated results. (It's probably worth noting that we used XPath Helper extensively when writing this tutorial!)</p>
+
+<p>If you want to run the parsers from this tutorial, you'll need to install XPaF. Unix installation instructions are available <a href="http://code.google.com/p/xpaf/source/browse/README">here</a>.</p>
+
+<p><em>Note: We use Bill Gates's Twitter page strictly as an example. We do not encourage activities that violate Twitter's terms of service.</em></p>
+
+<h2>Extracting single fields</h2>
+
+<p>Let's start simple.</p>
+
+<p>Suppose we just want to associate Bill's profile url with his name. The following parser does the trick:</p>
+
+<pre class="code-block">
+parser_name: "my_twitter_parser"
+
+relation_tmpls {
+  subject: "%url%"
+  predicate: "name"
+  object: "//span[@class='fn']"
+
+  subject_cardinality: ONE
+  object_cardinality: ONE
+}
+</pre>
+
+<div>
+<div class="toggle-row"><div class="toggle-clickable">
+<span class="toggle-icon"></span><a href="#" class="toggle-text"></a>
+</div></div>
+<pre class="toggle-value code-block">
+url: "http://twitter.com/billgates"
+parser_outputs {
+  parser_name: "my_twitter_parser"
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "name"
+    object: "Bill Gates"
+  }
+}
+</pre>
+</div>
+
+<p>This parser consists of a name (<span class="code-inline">my_twitter_parser</span>) and a single RelationTemplate; the template associates Bill's url (<span class="code-inline">%url%</span> is replaced with the actual url) with the result of the XPath query <span class="code-inline">//span[@class='fn']</span>, which in our case evaluates to "Bill Gates". You may be wondering what <span class="code-inline">subject_cardinality</span> and <span class="code-inline">object_cardinality</span> are for; we'll get to that soon.</p>
+
+<p>Extracting additional fields is simply a matter of adding RelationTemplates. For example, the following parser extracts Bill's photo in addition to his name:</p>
+
+<pre class="code-block">
+parser_name: "my_twitter_parser"
+url_regexp: "^http://twitter\\.com/"
+
+relation_tmpls {
+  subject: "%url%"
+  predicate: "name"
+  object: "//span[@class='fn']"
+
+  subject_cardinality: ONE
+  object_cardinality: ONE
+}
+relation_tmpls {
+  subject: "%url%"
+  predicate: "photo"
+  object: "//img[@id='profile-image']/@src"
+
+  subject_cardinality: ONE
+  object_cardinality: ONE
+}
+</pre>
+
+<div>
+<div class="toggle-row"><div class="toggle-clickable">
+<span class="toggle-icon"></span><a href="#" class="toggle-text"></a>
+</div></div>
+<pre class="toggle-value code-block">
+url: "http://twitter.com/billgates"
+parser_outputs {
+  parser_name: "my_twitter_parser"
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "name"
+    object: "Bill Gates"
+  }
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "photo"
+    object: "http://a2.twimg.com/profile_images/486782671/Picture_18_bigger.png"
+  }
+}
+</pre>
+</div>
+
+<p>You may have noticed that we also specified <span class="code-inline">url_regexp</span> above. This instructs the parsing framework (more specifically, <span class="code-inline">XpafParserMaster</span>) to only run our parser on documents whose urls match the regular expression <span class="code-inline">^http://twitter\\.com/</span>. Specifying <span class="code-inline">url_regexp</span> offers two important benefits: (1) it prevents us from extracting bogus data from non-Twitter documents that happen to match our XPath queries, and (2) it dramatically improves performance in situations where most documents aren't relevant to our parser, since we can avoid running our parser on documents with non-matching urls.</p>
+
+<h2>Extracting repeated fields</h2>
+
+<p>Okay, so extracting individual fields is easy... how about repeated fields? For example, suppose we wish to extract the set of users that Bill follows.</p>
+
+<p>XPaF makes this equally simple:</p>
+
+<pre class="code-block">
+parser_name: "my_twitter_parser"
+url_regexp: "^http://twitter\\.com/"
+
+relation_tmpls {
+  subject: "%url%"
+  predicate: "follows"
+  object: "//span[@class='vcard']/a[@class='url']/@href"
+
+  subject_cardinality: ONE
+  object_cardinality: MANY
+}
+</pre>
+
+<div>
+<div class="toggle-row"><div class="toggle-clickable">
+<span class="toggle-icon"></span><a href="#" class="toggle-text"></a>
+</div></div>
+<pre class="toggle-value code-block">
+url: "http://twitter.com/billgates"
+parser_outputs {
+  parser_name: "my_twitter_parser"
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "follows"
+    object: "http://twitter.com/PaulGAllen"
+  }
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "follows"
+    object: "http://twitter.com/SteveCase"
+  }
+
+  /* ... skipping 32 relations ... */
+
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "follows"
+    object: "http://twitter.com/WFP"
+  }
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "follows"
+    object: "http://twitter.com/GAVIAlliance"
+  }
+}
+</pre>
+</div>
+
+<p>Note that in this case, we set <span class="code-inline">subject_cardinality</span> to <span class="code-inline">ONE</span> and <span class="code-inline">object_cardinality</span> to <span class="code-inline">MANY</span>. This tells XPaF that we expect a one-to-many relationship between our subject (Bill's url) and objects (urls of users that Bill follows), and that the subject should be duplicated for each output relation.</p>
+
+<p>In other cases, we may want to set both <span class="code-inline">subject_cardinality</span> and <span class="code-inline">object_cardinality</span> to <span class="code-inline">MANY</span>. For example, to associate each followee's profile url with his/her corresponding photo url, we'd write something like this:</p>
+
+<pre class="code-block">
+parser_name: "my_twitter_parser"
+url_regexp: "^http://twitter\\.com/"
+
+relation_tmpls {
+  subject: "//span[@class='vcard']/a[@class='url']/@href"
+  predicate: "photo"
+  object: "//span[@class='vcard']//img[@class='photo fn']/@src"
+
+  subject_cardinality: MANY
+  object_cardinality: MANY
+}
+</pre>
+
+<div>
+<div class="toggle-row"><div class="toggle-clickable">
+<span class="toggle-icon"></span><a href="#" class="toggle-text"></a>
+</div></div>
+<pre class="toggle-value code-block">
+url: "http://twitter.com/billgates"
+parser_outputs {
+  parser_name: "my_twitter_parser"
+  relations {
+    subject: "http://twitter.com/PaulGAllen"
+    predicate: "photo"
+    object: "http://a1.twimg.com/profile_images/95218752/pallen_mini.jpg"
+  }
+  relations {
+    subject: "http://twitter.com/SteveCase"
+    predicate: "photo"
+    object: "http://a2.twimg.com/profile_images/555579649/steve_case_wsj_mini.jpg"
+  }
+
+  /* ... skipping 32 relations ... */
+
+  relations {
+    subject: "http://twitter.com/WFP"
+    predicate: "photo"
+    object: "http://a3.twimg.com/profile_images/899668508/twitter_profile_03_mini.png"
+  }
+  relations {
+    subject: "http://twitter.com/GAVIAlliance"
+    predicate: "photo"
+    object: "http://a3.twimg.com/profile_images/1168422796/5e7534c3-531d-45f4-a69b-589656027c2c_mini.gif"
+  }
+}
+</pre>
+</div>
+
+<p>Note: For many-to-many relations, if the number of extracted subjects doesn't equal the number of extracted objects, we output zero relations (since we don't know which subject to associate with which object). QueryGroupDefs, described later in this tutorial, are designed to better handle such situations.</p>
+
+<h2>QueryDefs</h2>
+
+<p>Armed just with RelationTemplates, we can already write some pretty nice parsers. But suppose we wish to reuse the same XPath query in multiple RelationTemplates, e.g. combining our two previous parsers, both of which use the query <span class="code-inline">//span[@class='vcard']/a[@class='url']/@href</span>. QueryDefs make this easy.</p>
+
+<p>A QueryDef defines a query to be referenced by one or more RelationTemplates -- think of it as a variable. In its simplest form, a QueryDef consists of a name and a query. For example, the following parser uses a QueryDef named <span class="code-inline">following_url</span> to combine our previous two parsers without repeating their overlapping XPath query.</p>
+
+<pre class="code-block">
+parser_name: "my_twitter_parser"
+url_regexp: "^http://twitter\\.com/"
+
+query_defs {
+  name: "following_url"
+  query: "//span[@class='vcard']/a[@class='url']/@href"
+}
+
+relation_tmpls {
+  subject: "%url%"
+  predicate: "follows"
+  object: "%following_url%"
+
+  subject_cardinality: ONE
+  object_cardinality: MANY
+}
+relation_tmpls {
+  subject: "%following_url%"
+  predicate: "photo"
+  object: "//span[@class='vcard']//img[@class='photo fn']/@src"
+
+  subject_cardinality: MANY
+  object_cardinality: MANY
+}
+</pre>
+
+<div>
+<div class="toggle-row"><div class="toggle-clickable">
+<span class="toggle-icon"></span><a href="#" class="toggle-text"></a>
+</div></div>
+<pre class="toggle-value code-block">
+url: "http://twitter.com/billgates"
+parser_outputs {
+  parser_name: "my_twitter_parser"
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "follows"
+    object: "http://twitter.com/PaulGAllen"
+  }
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "follows"
+    object: "http://twitter.com/SteveCase"
+  }
+
+  /* ... skipping 32 relations ... */
+
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "follows"
+    object: "http://twitter.com/WFP"
+  }
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "follows"
+    object: "http://twitter.com/GAVIAlliance"
+  }
+  relations {
+    subject: "http://twitter.com/PaulGAllen"
+    predicate: "photo"
+    object: "http://a1.twimg.com/profile_images/95218752/pallen_mini.jpg"
+  }
+  relations {
+    subject: "http://twitter.com/SteveCase"
+    predicate: "photo"
+    object: "http://a2.twimg.com/profile_images/555579649/steve_case_wsj_mini.jpg"
+  }
+
+  /* ... skipping 32 relations ... */
+
+  relations {
+    subject: "http://twitter.com/WFP"
+    predicate: "photo"
+    object: "http://a3.twimg.com/profile_images/899668508/twitter_profile_03_mini.png"
+  }
+  relations {
+    subject: "http://twitter.com/GAVIAlliance"
+    predicate: "photo"
+    object: "http://a3.twimg.com/profile_images/1168422796/5e7534c3-531d-45f4-a69b-589656027c2c_mini.gif"
+  }
+}
+</pre>
+</div>
+
+<p>Beyond just giving us a way to reuse XPath queries, QueryDefs also enable us to run custom post-processing operations (such as find-replace) on the raw XPath query results. This functionality is described towards the end of the tutorial.</p>
+
+<h2>QueryGroupDefs</h2>
+
+<p>The astute reader may have noticed a potential problem with our parser that associates followees' urls with their photos: What if one of Bill's followees has a photo but no url? In this case, our XPath query for photos would return 36 results, but our XPath query for urls would return 35 results, and our poor XPaF parser wouldn't know how to associate photos with urls.</p>
+
+<p>As noted previously, XPaF handles this situation as best it can -- it outputs zero relations. But now consider a far more dire scenario: Suppose Bill's first followee has a photo but no url, and his second followee has a url but no photo. In this case, XPath would happily return 35 results for each of our queries, and we'd incorrectly associate the first followee's photo with the second's url. Yikes!</p>
+
+<p>QueryGroupDefs are designed specifically to deal with this situation. A QueryGroupDef defines a group of queries that share a DOM root node; it consists of a name, a "root query" that identifies root nodes, and a list of QueryDefs with queries relative to the root query. The gory details can be found <a href="http://code.google.com/p/xpaf/source/browse/src/xpaf_parser_def.proto">here</a> (search for <span class="code-inline">QueryGroupDef</span>), but for the purposes of this tutorial a quick example should suffice:</p>
+
+<pre class="code-block">
+parser_name: "my_twitter_parser"
+url_regexp: "^http://twitter\\.com/"
+
+query_group_defs {
+  name: "following"
+
+  root_query: "//span[@class='vcard']"
+
+  query_defs {
+    name: "url"
+    query: "/a[@class='url']/@href"
+  }
+  query_defs {
+    name: "photo"
+    query: "/a/img[@class='photo fn']/@src"
+  }
+}
+
+relation_tmpls {
+  subject: "%url%"
+  predicate: "follows"
+  object: "%following.url%"
+
+  subject_cardinality: ONE
+  object_cardinality: MANY
+}
+relation_tmpls {
+  subject: "%following.url%"
+  predicate: "photo"
+  object: "%following.photo%"
+
+  subject_cardinality: MANY
+  object_cardinality: MANY
+}
+</pre>
+
+<div>
+<div class="toggle-row"><div class="toggle-clickable">
+<span class="toggle-icon"></span><a href="#" class="toggle-text"></a>
+</div></div>
+<pre class="toggle-value code-block">
+url: "http://twitter.com/billgates"
+parser_outputs {
+  parser_name: "my_twitter_parser"
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "follows"
+    object: "http://twitter.com/PaulGAllen"
+  }
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "follows"
+    object: "http://twitter.com/SteveCase"
+  }
+
+  /* ... skipping 32 relations ... */
+
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "follows"
+    object: "http://twitter.com/WFP"
+  }
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "follows"
+    object: "http://twitter.com/GAVIAlliance"
+  }
+  relations {
+    subject: "http://twitter.com/PaulGAllen"
+    predicate: "photo"
+    object: "http://a1.twimg.com/profile_images/95218752/pallen_mini.jpg"
+  }
+  relations {
+    subject: "http://twitter.com/SteveCase"
+    predicate: "photo"
+    object: "http://a2.twimg.com/profile_images/555579649/steve_case_wsj_mini.jpg"
+  }
+
+  /* ... skipping 32 relations ... */
+
+  relations {
+    subject: "http://twitter.com/WFP"
+    predicate: "photo"
+    object: "http://a3.twimg.com/profile_images/899668508/twitter_profile_03_mini.png"
+  }
+  relations {
+    subject: "http://twitter.com/GAVIAlliance"
+    predicate: "photo"
+    object: "http://a3.twimg.com/profile_images/1168422796/5e7534c3-531d-45f4-a69b-589656027c2c_mini.gif"
+  }
+}
+</pre>
+</div>
+
+<p>When XPaF runs this parser, it first issues the XPath query <span class="code-inline">//span[@class='vcard']</span> to identify root nodes. Then, it issues each QueryDef's query (appended to the root query) and associates results that share the same root node. In other words, it issues <span class="code-inline">//span[@class='vcard']/a[@class='url']/@href</span> and <span class="code-inline">//span[@class='vcard']/a/img[@class='photo fn']/@src</span> and then associates urls and photos that share the same <span class="code-inline">//span[@class='vcard']</span> node.</p>
+
+<p>For the problematic example described above, where one followee has no url, another has no photo, and the remaining 34 have both, a QueryGroupDef that associates urls with photos would yield 34 output pairings, all correct.</p>
+
+<h2>Annotations</h2>
+
+<p>Beyond simple triples (subject-predicate-object), XPaF also supports annotating relations with additional data using AnnotationTemplates.</p>
+
+<p>For example, to extract Bill's tweets and annotate them with timestamps and recipient counts, we could write the following:</p>
+
+<pre class="code-block">
+parser_name: "my_twitter_parser"
+url_regexp: "^http://twitter\\.com/"
+
+query_group_defs {
+  name: "tweet"
+
+  root_query: "//li[contains(@class, 'status')]"
+
+  query_defs {
+    name: "content"
+    query: "//span[@class='entry-content']"
+  }
+  query_defs {
+    name: "timestamp"
+    query: "//span[@class='published timestamp']"
+  }
+}
+
+relation_tmpls {
+  subject: "%url%"
+  predicate: "tweeted"
+  object: "%tweet.content%"
+
+  subject_cardinality: ONE
+  object_cardinality: MANY
+
+  annotation_tmpls {
+    name: "timestamp"
+    value: "%tweet.timestamp%"
+    value_cardinality: MANY
+  }
+  annotation_tmpls {
+    name: "num_recipients"
+    value: "//span[@id='follower_count']"
+    value_cardinality: ONE
+  }
+}
+</pre>
+
+<div>
+<div class="toggle-row"><div class="toggle-clickable">
+<span class="toggle-icon"></span><a href="#" class="toggle-text"></a>
+</div></div>
+<pre class="toggle-value code-block">
+url: "http://twitter.com/billgates"
+parser_outputs {
+  parser_name: "my_twitter_parser"
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "tweeted"
+    object: "A fun interview Melinda & I did with Warren from India - http://bit.ly/hOPDuH - an incredible trip, thanks to everyone who participated..."
+    annotations {
+      name: "timestamp"
+      value: "7:41 AM Mar 30th"
+    }
+    annotations {
+      name: "num_recipients"
+      value: "2,407,290 "
+    }
+  }
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "tweeted"
+    object: "Today is World TB day \342\200\223 http://bit.ly/fEuSNS - more on some great work and innovation we saw here in India at the L.R.S. Institute"
+    annotations {
+      name: "timestamp"
+      value: "1:09 AM Mar 24th"
+    }
+    annotations {
+      name: "num_recipients"
+      value: "2,407,290 "
+    }
+  }
+
+  /* ... skipping 16 relations ... */
+
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "tweeted"
+    object: "Congratulations to my dear friend Warren Buffett on National Medal of Freedom - http://bit.ly/eN9rh1"
+    annotations {
+      name: "timestamp"
+      value: "2:12 PM Feb 15th"
+    }
+    annotations {
+      name: "num_recipients"
+      value: "2,407,290 "
+    }
+  }
+  relations {
+    subject: "http://twitter.com/billgates"
+    predicate: "tweeted"
+    object: "A nice review of my friend Nathan Myhrvold\'s cookbook which is really quite good - http://on.wsj.com/f0K5ET"
+    annotations {
+      name: "timestamp"
+      value: "4:23 PM Feb 12th"
+    }
+    annotations {
+      name: "num_recipients"
+      value: "2,407,290 "
+    }
+  }
+}
+</pre>
+</div>
+
+<p>Like subjects and objects, annotation values have associated cardinalities; in our case, we used cardinality MANY for <span class="code-inline">timestamp</span> and cardinality ONE for <span class="code-inline">num_recipients</span>, causing the latter to be duplicated for each output relation.</p>
+
+<p>If the number of results returned for a given annotation value disagrees with any cardinalities or result counts, the AnnotationTemplate is skipped, i.e. no annotations are emitted for that template. (On the other hand, for subject and object cardinality errors, the entire RelationTemplate is skipped.)</p>
+
+<h2>Advanced features and extensions</h2>
+
+<p>RelationTemplates, AnnotationTemplates, QueryDefs, and QueryGroupDefs together define the core of XPaF. Users of XPaF often run application-specific post-processing operations on the <span class="code-inline">ParsedDocument</span> protocol buffers produced by XPaF. However, to better support common use cases in document parsing, XPaF also provides several generic filtering, post-processing, and extension mechanisms, described in this section.</p>
+
+<h4>Running multiple parsers</h4>
+<div class="subsection">
+<p>In this tutorial, all of our examples have consisted of single parsers. However, it's just as easy to define and run multiple parsers -- the <span class="code-inline">XpafParserDefs</span> object passed to <span class="code-inline">XpafParserMaster</span> may contain multiple <span class="code-inline">XpafParserDef</span> objects, and <span class="code-inline">ParsedDocument</span> may contain multiple <span class="code-inline">ParserOutput</span> objects.
+<br>TODO(sadovsky): Maybe move this to FAQ?</p>
+</div>
+
+<h4>QueryDef post-processing operations</h4>
+<div class="subsection">
+<p>TODO(sadovsky): Fill this in.</p>
+</div>
+
+<h4>Filtering operations</h4>
+<div class="subsection">
+<p>TODO(sadovsky): Fill this in.</p>
+</div>
+
+<h4>Extension support</h4>
+<div class="subsection">
+<p>To facilitate application-specific business logic, XPaF allows parser authors to embed arbitrary string data in <span class="code-inline">userdata</span> fields of the <span class="code-inline">XpafParserDef</span> and <span class="code-inline">RelationTemplate</span> protocol buffers. Also, <span class="code-inline">XpafParserMaster</span> itself should be thought of as a reference implementation; it can be replaced (and <span class="code-inline">XPafParserDef</span> can be embedded) to allow for additional customizations.
+<br>TODO(sadovsky): Maybe move this to FAQ?</p>
+</div>
+
+<p>All of these features are described in more detail in the <a href="http://code.google.com/p/xpaf/source/browse/src/xpaf_parser_def.proto">XPaF parser specification</a>.</p>
+
+<h2>Resources</h2>
+
+<p>Hopefully this tutorial has given you a flavor for what's possible with XPaF. However, in the interest of brevity, plenty of details were omitted; the full XPaF parser specification is available <a href="http://code.google.com/p/xpaf/source/browse/src/xpaf_parser_def.proto">here</a>. For the adventurous, a brief stroll through the <a href="http://code.google.com/p/xpaf/source/browse/src">XPaF implementation</a> is highly recommended (start with <span class="code-inline">xpaf_parser.h</span>).</p>
+
+<p>More examples of XPaF parsers can be found in the <a href="http://code.google.com/p/xpaf/source/browse/src/testing/parse_test_data">unit test directory</a>. These tests are (or ought to be) comprehensive; everything described in this tutorial should have an associated test.</p>
+
+<p>We also recommend reading through the <a href="faq.html">FAQ</a> and installing the <a href="https://chrome.google.com/webstore/detail/hgimnogjllphhhkhlmebbmlgjoejdpjl">XPath Helper Chrome extension</a>, if you haven't done so already.</p>
+
+<p>Finally, please do not hesitate to contact the author with any questions or suggestions.
+<br>TODO(sadovsky): Provide contact details.</p>
+
+</div>
+<div id="footer"><em>Adam Sadovsky</em></div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="prettify.js"></script>
+<script type="text/javascript" src="tutorial.js"></script>
+</body>
+</html>

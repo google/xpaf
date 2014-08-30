@@ -1,0 +1,57 @@
+# Copyright 2011 Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+parser_defs {
+  parser_name: "value_of_element_node"
+  url_regexp: "^http://value_of_element_node.com/"
+
+  # XPath internally extracts the node content and strips whitespace.
+  # Note that normalize-space() replaces each internal sequence of whitespace
+  # characters with one space.
+  query_defs {
+    name: "option_one"
+    query: "normalize-space(string(//div))"
+  }
+
+  # XPathWrapper gets an xmlNode from XPath and invokes xmlNodeGetContent() to
+  # get the node's value. We strip leading and trailing whitespace using an
+  # extraction regexp.
+  query_defs {
+    name: "option_two"
+    query: "//div"
+    post_processing_ops {
+      extract_op {
+        regexp: "^\\s*([^\\s]+(?:[\\s]+[^\\s]+)*)\\s*$"
+      }
+    }
+  }
+
+  relation_tmpls {
+    subject: "option_one"
+    predicate: "value"
+    object: "%option_one%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+
+  relation_tmpls {
+    subject: "option_two"
+    predicate: "value"
+    object: "%option_two%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+}

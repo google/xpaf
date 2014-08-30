@@ -1,0 +1,91 @@
+// Copyright 2011 Google Inc. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto2";
+
+package xpaf;
+
+// Find-replace operation.
+// See RE2::Replace() for implementation details.
+message ReplaceOp {
+  // The regular expression to search for.
+  required string regexp = 1;
+
+  // The string to replace it with.
+  //
+  // As explained in re2.h, backslash-escaped digits (\1 to \9) can be used to
+  // insert text matching corresponding parenthesized groups from 'regexp', and
+  // \0 refers to the entire matching text.
+  required string rewrite = 2;
+
+  // If false, we replace the first match of 'regexp' with 'rewrite'. If true,
+  // we replace successive non-overlapping occurrences of 'regexp' with
+  // 'rewrite'. See RE2::Replace() and RE2::GlobalReplace().
+  optional bool global = 3;
+
+  // NOTE(sadovsky): We may want to allow the user to specify min_replacements
+  // and maybe even max_replacements, and consider this operation failed if the
+  // constraints aren't satisfied.
+}
+
+// Extraction operation. Can be used for filtering.
+// See RE2::PartialMatch() for implementation details.
+message ExtractOp {
+  // Regular expression for extracting a value from the input string using
+  // RE2::PartialMatch(). E.g. for the input string "Num friends: 1234", regexp
+  // "Num friends:\\s*(\\d+)" will extract "1234".
+  //
+  // If no value is extracted, this operation is considered failed.
+  required string regexp = 1;
+}
+
+// Substring operation.
+message SubstrOp {
+  // Substring [start, end) indices, where 'start' is inclusive and 'end' is
+  // exclusive. If negative, they're added to the length of the input string,
+  // e.g. -1 points to the last character. At least one of these two fields must
+  // be specified.
+  //
+  // If either 'start' or 'end' falls outside the bounds of the input string,
+  // this operation is considered failed.
+  optional int32 start = 1;
+  optional int32 end = 2;
+
+  // Length of the substring. Must be non-negative. Must not be specified if
+  // both 'start' and 'end' are specified.
+  //
+  // If start+len (or end-len) falls outside the bounds of the input string,
+  // this operation is considered failed.
+  //
+  // If either 'start' or 'end' is not specified and 'len' is also not
+  // specified, this operation will return [start, strlen) or [0, end).
+  optional int32 len = 3;
+}
+
+// Conversion operation.
+message ConvertOp {
+  // If true, we convert the input string to lower-case or upper-case. At most
+  // one of these may be true.
+  optional bool to_lower_case = 1;
+  optional bool to_upper_case = 2;
+}
+
+// A single post-processing operation to perform on a QueryDef's result(s).
+// Exactly one type of operation (ReplaceOp, ExtractOp, etc.) must be specified.
+message PostProcessingOp {
+  optional ReplaceOp replace_op = 1;
+  optional ExtractOp extract_op = 2;
+  optional SubstrOp substr_op = 3;
+  optional ConvertOp convert_op = 4;
+}

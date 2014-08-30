@@ -1,0 +1,319 @@
+url: "http://annotations.com/adam.html"
+parser_outputs {
+  parser_name: "annotations_one_one_many"
+  relations {
+    subject: "par"
+    predicate: "pap"
+    object: "pas"
+    annotations {
+      name: "date"
+      value: "2002"
+    }
+  }
+  relations {
+    subject: "par"
+    predicate: "pap"
+    object: "pas"
+    annotations {
+      name: "date"
+      value: "2003"
+    }
+  }
+  relations {
+    subject: "par"
+    predicate: "pap"
+    object: "pas"
+    annotations {
+      name: "date"
+      value: "2003"
+    }
+  }
+  relations {
+    subject: "bar"
+    predicate: "bap"
+    object: "bas"
+    annotations {
+      name: "ban"
+      value: "bam"
+    }
+    annotations {
+      name: "fruit"
+      value: "Apple"
+    }
+  }
+  relations {
+    subject: "bar"
+    predicate: "bap"
+    object: "bas"
+    annotations {
+      name: "ban"
+      value: "bam"
+    }
+    annotations {
+      name: "fruit"
+      value: "Banana"
+    }
+  }
+  relations {
+    subject: "bar"
+    predicate: "bap"
+    object: "bas"
+    annotations {
+      name: "ban"
+      value: "bam"
+    }
+    annotations {
+      name: "fruit"
+      value: "Cherry"
+    }
+  }
+  relations {
+    subject: "bar"
+    predicate: "bap"
+    object: "bas"
+    annotations {
+      name: "ban"
+      value: "bam"
+    }
+    annotations {
+      name: "fruit"
+      value: "Durian"
+    }
+  }
+  relations {
+    subject: "car"
+    predicate: "cap"
+    object: "cas"
+    annotations {
+      name: "can"
+      value: "cam"
+    }
+  }
+}
+parser_outputs {
+  parser_name: "annotations_literals"
+  relations {
+    subject: "bar"
+    predicate: "bap"
+    object: "bas"
+    annotations {
+      name: "ban"
+      value: "bam"
+    }
+  }
+  relations {
+    subject: "car"
+    predicate: "cap"
+    object: "cas"
+    annotations {
+      name: "can"
+      value: "cam"
+    }
+  }
+  relations {
+    subject: "baz"
+    predicate: "date"
+    object: "2002"
+    annotations {
+      name: "rating"
+      value: "5"
+    }
+  }
+  relations {
+    subject: "baz"
+    predicate: "date"
+    object: "2003"
+    annotations {
+      name: "rating"
+      value: "5"
+    }
+  }
+  relations {
+    subject: "baz"
+    predicate: "date"
+    object: "2003"
+    annotations {
+      name: "rating"
+      value: "5"
+    }
+  }
+}
+parser_outputs {
+  parser_name: "annotations_skip"
+  relations {
+    subject: "foo"
+    predicate: "bar"
+    object: "Apple"
+  }
+  relations {
+    subject: "foo"
+    predicate: "bar"
+    object: "Banana"
+  }
+  relations {
+    subject: "foo"
+    predicate: "bar"
+    object: "Cherry"
+  }
+  relations {
+    subject: "foo"
+    predicate: "bar"
+    object: "Durian"
+  }
+  relations {
+    subject: "foo"
+    predicate: "bar"
+    object: "baz"
+  }
+  relations {
+    subject: "foo"
+    predicate: "bar"
+    object: "baz"
+    annotations {
+      name: "date"
+      value: "2002"
+    }
+  }
+  relations {
+    subject: "foo"
+    predicate: "bar"
+    object: "baz"
+    annotations {
+      name: "date"
+      value: "2003"
+    }
+  }
+  relations {
+    subject: "foo"
+    predicate: "bar"
+    object: "baz"
+    annotations {
+      name: "date"
+      value: "2003"
+    }
+  }
+}
+parser_outputs {
+  parser_name: "annotations_simple"
+  relations {
+    subject: "Adam"
+    predicate: "ate"
+    object: "Apple"
+    annotations {
+      name: "date"
+      value: "2002"
+    }
+    annotations {
+      name: "rating"
+      value: "4"
+    }
+  }
+  relations {
+    subject: "Adam"
+    predicate: "ate"
+    object: "Banana"
+    annotations {
+      name: "date"
+      value: "2003"
+    }
+  }
+  relations {
+    subject: "Adam"
+    predicate: "ate"
+    object: "Cherry"
+    annotations {
+      name: "date"
+      value: "2003"
+    }
+    annotations {
+      name: "rating"
+      value: "4"
+    }
+  }
+  relations {
+    subject: "Adam"
+    predicate: "ate"
+    object: "Durian"
+    annotations {
+      name: "rating"
+      value: "5"
+    }
+  }
+  relations {
+    subject: "Apple"
+    predicate: "date"
+    object: "2002"
+    annotations {
+      name: "rating"
+      value: "4"
+    }
+  }
+  relations {
+    subject: "Banana"
+    predicate: "date"
+    object: "2003"
+  }
+  relations {
+    subject: "Cherry"
+    predicate: "date"
+    object: "2003"
+    annotations {
+      name: "rating"
+      value: "4"
+    }
+  }
+  relations {
+    subject: "2002"
+    predicate: "fruit"
+    object: "Apple"
+    annotations {
+      name: "name"
+      value: "Adam"
+    }
+  }
+  relations {
+    subject: "2003"
+    predicate: "fruit"
+    object: "Banana"
+    annotations {
+      name: "name"
+      value: "Adam"
+    }
+  }
+  relations {
+    subject: "2003"
+    predicate: "fruit"
+    object: "Cherry"
+    annotations {
+      name: "name"
+      value: "Adam"
+    }
+  }
+  relations {
+    subject: "foo"
+    predicate: "date"
+    object: "2002"
+    annotations {
+      name: "rating"
+      value: "4"
+    }
+  }
+  relations {
+    subject: "foo"
+    predicate: "date"
+    object: "2003"
+    annotations {
+      name: "rating"
+      value: "4"
+    }
+  }
+  relations {
+    subject: "foo"
+    predicate: "date"
+    object: "2003"
+    annotations {
+      name: "rating"
+      value: "5"
+    }
+  }
+}

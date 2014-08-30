@@ -1,0 +1,12 @@
+XPath Helper makes it easy to extract, edit, and evaluate XPath queries on any webpage.
+
+IMPORTANT: After installing this extension, you must reload any existing tabs (or restart Chrome) for it to work on those tabs!
+
+Instructions:
+1. Open a new tab and navigate to your favorite webpage.
+2. Hit Ctrl-Shift-X to open the XPath Helper console.
+3. Hold down Shift as you mouse over elements on the page. The query box will continuously update to show the full XPath query for the element below the mouse pointer. The results box to its right will show the evaluated results for the query.
+4. If desired, edit the XPath query directly in the console. The results box will immediately reflect any changes.
+5. Hit Ctrl-Shift-X again to close the console.
+
+One word of caution: When rendering HTML tables, Chrome inserts artificial <tbody> tags into the DOM, which will consequently show up in queries extracted by this extension.

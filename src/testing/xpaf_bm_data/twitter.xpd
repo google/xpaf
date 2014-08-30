@@ -1,0 +1,189 @@
+# Copyright 2011 Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Twitter parser for testing.
+
+parser_defs {
+  parser_name: "twitter"
+  url_regexp: "^http://(:?[^/]+\\.)?twitter\\.[^/]+/"
+
+  #############
+  # QueryDefs
+
+  query_group_defs {
+    name: "friend"
+
+    root_query: "//div[@id='following_list']/span/a[@class='url']"
+
+    query_defs {
+      name: "url"
+      query: "/@href"
+    }
+    query_defs {
+      name: "photo"
+      query: "/img/@src"
+    }
+  }
+
+  query_defs {
+    name: "following_count"
+    query: "//a[@id='following_count_link']/span[@id='following_count']"
+    post_processing_ops {
+      replace_op {
+        regexp: "[, ]"
+        rewrite: ""
+        global: true
+      }
+    }
+  }
+
+  query_defs {
+    name: "follower_count"
+    query: "//a[@id='follower_count_link']/span[@id='follower_count']"
+    post_processing_ops {
+      replace_op {
+        regexp: "[, ]"
+        rewrite: ""
+        global: true
+      }
+    }
+  }
+
+  query_defs {
+    name: "lists_count"
+    query: "//a[@id='lists_count_link']/span[@id='lists_count']"
+    post_processing_ops {
+      replace_op {
+        regexp: "[, ]"
+        rewrite: ""
+        global: true
+      }
+    }
+  }
+
+  query_defs {
+    name: "update_count"
+    query: "//li[@id='profile_tab']/a/span[@id='update_count']"
+    post_processing_ops {
+      replace_op {
+        regexp: "[, ]"
+        rewrite: ""
+        global: true
+      }
+    }
+  }
+
+  #############
+  # Relations
+
+  relation_tmpls {
+    subject: "%url%"
+    predicate: "contact"
+    object: "%friend.url%"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+    userdata: "edge"
+  }
+
+  relation_tmpls {
+    subject: "%friend.url%"
+    predicate: "photo"
+    object: "%friend.photo%"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+    userdata: "attr"
+  }
+
+  relation_tmpls {
+    subject: "%url%"
+    predicate: "fn"
+    object: "//div[@id='profile']//span[@class='fn']"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+    userdata: "attr"
+  }
+
+  relation_tmpls {
+    subject: "%url%"
+    predicate: "location"
+    object: "//div[@id='profile']//span[@class='adr']"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+    userdata: "attr"
+  }
+
+  relation_tmpls {
+    subject: "%url%"
+    predicate: "photo"
+    object: "//h2/a/img[@id='profile-image']/@src"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+    userdata: "attr"
+  }
+
+  relation_tmpls {
+    subject: "%url%"
+    predicate: "bio"
+    object: "//div[@id='profile']//span[@class='bio']"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+    userdata: "attr"
+  }
+
+  relation_tmpls {
+    subject: "%url%"
+    predicate: "following_count"
+    object: "%following_count%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+    userdata: "attr"
+  }
+
+  relation_tmpls {
+    subject: "%url%"
+    predicate: "follower_count"
+    object: "%follower_count%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+    userdata: "attr"
+  }
+
+  relation_tmpls {
+    subject: "%url%"
+    predicate: "lists_count"
+    object: "%lists_count%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+    userdata: "attr"
+  }
+
+  relation_tmpls {
+    subject: "%url%"
+    predicate: "update_count"
+    object: "%update_count%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+    userdata: "attr"
+  }
+}

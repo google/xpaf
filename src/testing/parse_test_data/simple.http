@@ -1,0 +1,27 @@
+http://simple.com/adam.html
+<!doctype html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="name">Adam</div>
+    <div id="occ">Engineer</div>
+    <table>
+      <tr>
+        <td class="fr_name">George</td>
+        <td class="fr_url"><a href="george.html">Link</a></td>
+        <td class="fr_img"><img src="george.jpg"></td>
+      </tr>
+      <tr>
+        <td class="fr_name">Melissa</td>
+        <td class="fr_occ">Banker</td>
+        <td class="fr_url"><a href="/mel.html">Link</a></td>
+      </tr>
+      <tr>
+        <td class="fr_name">Jessica</td>
+        <td class="fr_occ">Lawyer</td>
+        <td class="fr_url"><a href="http://foo.com/jessica.html">Link</a></td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+/**
+ * Copyright 2011 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * @author opensource@google.com
+ * @license Apache License, Version 2.0.
+ */
+
+body {
+  background: #222;
+  color: #fff;
+  font-family: arial;
+  margin: 0;
+  overflow: hidden;
+  padding: 10px;
+}
+
+div {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  background: #222;
+  border: 1px solid #666;
+  box-sizing: border-box;
+  color: #fff;
+  display: block;
+  font-family: courier;
+  font-size: 12px;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 0;
+  resize: none;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-button:vertical {
+  display: none;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: #555;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  background-color: #888;
+}
+
+#row {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+#query-box {
+  float: left;
+  padding-right: 10px;
+  width: 60%;
+}
+
+#results-box {
+  float: left;
+  width: 40%;
+}
+
+.box-name {
+  font-size: 12px;
+  font-weight: bold;
+  padding-bottom: 2px;
+}
+
+#query {
+  height: 60px;
+  width: 100%;
+}
+
+#results {
+  height: 60px;
+  width: 100%;
+}
+
+#clear {
+  clear: both;
+}

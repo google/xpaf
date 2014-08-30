@@ -1,0 +1,178 @@
+# Copyright 2011 Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Tests that QueryGroupDefs work as advertised.
+
+parser_defs {
+  parser_name: "many_to_many"
+  url_regexp: "^http://query_group_def.com/"
+
+  query_group_defs {
+    name: "friend"
+
+    root_query: "//table/tr"
+
+    query_defs {
+      name: "name"
+      query: "/td[@class='fr_name']"
+    }
+    query_defs {
+      name: "occupation"
+      query: "/td[@class='fr_occ']"
+    }
+  }
+
+  relation_tmpls {
+    subject: "%friend.name%"
+    predicate: "occupation"
+    object: "%friend.occupation%"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+  }
+}
+
+parser_defs {
+  parser_name: "invalid_root_query"
+  url_regexp: "^http://query_group_def.com/"
+  userdata: "should_abort"
+
+  query_group_defs {
+    name: "bad"
+
+    root_query: "string(//table/tr)"
+
+    query_defs {
+      name: "name"
+      query: "/td[@class='fr_name']"
+    }
+  }
+
+  relation_tmpls {
+    subject: "foo"
+    predicate: "bar"
+    object: "%bad.name%"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+  }
+}
+
+# Note: This parser should abort even though we don't reference %parent% in any
+# RelationTemplate, since all subqueries are evaluated at once.
+parser_defs {
+  parser_name: "not_root_node_descendant"
+  url_regexp: "^http://query_group_def.com/"
+  userdata: "should_abort"
+
+  query_group_defs {
+    name: "friend"
+
+    root_query: "//table/tr"
+
+    query_defs {
+      name: "parent"
+      query: "/parent::*"
+    }
+    query_defs {
+      name: "photo"
+      query: "//img/@src"
+    }
+  }
+
+  relation_tmpls {
+    subject: "foo"
+    predicate: "bar"
+    object: "%friend.photo%"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+  }
+}
+
+parser_defs {
+  parser_name: "root_node_with_multiple_results"
+  url_regexp: "^http://query_group_def.com/"
+  userdata: "should_abort"
+
+  query_group_defs {
+    name: "foo"
+
+    root_query: "//table"
+
+    query_defs {
+      name: "name"
+      query: "//td[@class='fr_name']"
+    }
+  }
+
+  relation_tmpls {
+    subject: "one"
+    predicate: "name"
+    object: "%foo.name%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+}
+
+parser_defs {
+  parser_name: "root_query_has_no_results"
+  url_regexp: "^http://query_group_def.com/"
+
+  query_group_defs {
+    name: "foo"
+
+    root_query: "//blink"
+
+    query_defs {
+      name: "name"
+      query: "//td[@class='fr_name']"
+    }
+  }
+
+  relation_tmpls {
+    subject: "bar"
+    predicate: "name"
+    object: "%foo.name%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+}
+
+parser_defs {
+  parser_name: "subquery_has_no_results"
+  url_regexp: "^http://query_group_def.com/"
+
+  query_group_defs {
+    name: "foo"
+
+    root_query: "//table"
+
+    query_defs {
+      name: "fake"
+      query: "//td[@class='fr_fake']"
+    }
+  }
+
+  relation_tmpls {
+    subject: "bar"
+    predicate: "fake"
+    object: "%foo.fake%"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+}

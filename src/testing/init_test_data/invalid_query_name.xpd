@@ -1,0 +1,141 @@
+# Copyright 2011 Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+parser_defs {
+  parser_name: "foo"
+  userdata: "Invalid query name: 1"
+
+  query_defs {
+    name: "1"
+    query: "//div"
+  }
+}
+
+parser_defs {
+  parser_name: "foo"
+  userdata: "Invalid query name: a1b"
+
+  query_defs {
+    name: "a"
+    query: "//div"
+  }
+  query_defs {
+    name: "a1b"
+    query: "//div"
+  }
+}
+
+parser_defs {
+  parser_name: "foo"
+  userdata: "Invalid query name: a-b"
+
+  query_defs {
+    name: "a-b"
+    query: "//div"
+  }
+  query_defs {
+    name: "1"
+    query: "//div"
+  }
+}
+
+parser_defs {
+  parser_name: "foo"
+  userdata: "Invalid query name: %a%"
+
+  query_defs {
+    name: "%a%"
+    query: "//div"
+  }
+}
+
+parser_defs {
+  parser_name: "foo"
+  userdata: "Invalid query name: g1"
+
+  query_group_defs {
+    name: "g1"
+
+    root_query: "/html"
+
+    query_defs {
+      name: "a"
+      query: "//div"
+    }
+  }
+}
+
+parser_defs {
+  parser_name: "foo"
+  userdata: "Invalid query name: a1"
+
+  query_group_defs {
+    name: "g"
+
+    root_query: "/html"
+
+    query_defs {
+      name: "a1"
+      query: "//div"
+    }
+  }
+}
+
+parser_defs {
+  parser_name: "foo"
+  userdata: "Invalid query name: a1"
+
+  query_group_defs {
+    name: "g"
+
+    root_query: "/html"
+
+    query_defs {
+      name: "a1"
+      query: "//div"
+    }
+  }
+}
+
+parser_defs {
+  parser_name: "foo"
+  userdata: "Invalid query name: b1"
+
+  query_defs {
+    name: "a"
+    query: "//div"
+  }
+
+  query_group_defs {
+    name: "g"
+
+    root_query: "/html"
+
+    query_defs {
+      name: "a"
+      query: "//div"
+    }
+  }
+
+  query_group_defs {
+    name: "h"
+
+    root_query: "/html"
+
+    query_defs {
+      name: "b1"
+      query: "//div"
+    }
+  }
+}

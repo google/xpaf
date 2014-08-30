@@ -1,0 +1,283 @@
+# Copyright 2011 Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Tests that annotations work as expected.
+
+parser_defs {
+  parser_name: "annotations_simple"
+  url_regexp: "^http://annotations.com/"
+
+  query_group_defs {
+    name: "v"
+
+    root_query: "//table/tr"
+
+    query_defs {
+      name: "fruit"
+      query: "/td[@class='v_fruit']"
+    }
+    query_defs {
+      name: "date"
+      query: "/td[@class='v_date']"
+    }
+    query_defs {
+      name: "rating"
+      query: "/td[@class='v_rating']"
+    }
+  }
+
+  # ONE-MANY-MANY
+  relation_tmpls {
+    subject: "//div[@id='name']"
+    predicate: "ate"
+    object: "%v.fruit%"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+
+    annotation_tmpls {
+      name: "date"
+      value: "%v.date%"
+      value_cardinality: MANY
+    }
+    annotation_tmpls {
+      name: "rating"
+      value: "%v.rating%"
+      value_cardinality: MANY
+    }
+  }
+
+  # MANY-MANY-MANY
+  relation_tmpls {
+    subject: "%v.fruit%"
+    predicate: "date"
+    object: "%v.date%"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+
+    annotation_tmpls {
+      name: "rating"
+      value: "%v.rating%"
+      value_cardinality: MANY
+    }
+  }
+
+  # MANY-MANY-ONE
+  relation_tmpls {
+    subject: "%v.date%"
+    predicate: "fruit"
+    object: "%v.fruit%"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+
+    annotation_tmpls {
+      name: "name"
+      value: "//div[@id='name']"
+      value_cardinality: ONE
+    }
+  }
+
+  # This relation template produces incorrect mappings because it doesn't use
+  # QueryGroupDef. That doesn't make it a bad test, though. :)
+  relation_tmpls {
+    subject: "foo"
+    predicate: "date"
+    object: "//td[@class='v_date']"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+
+    annotation_tmpls {
+      name: "rating"
+      value: "//td[@class='v_rating']"
+      value_cardinality: MANY
+    }
+  }
+}
+
+# Simple tests for annotations with literal values.
+parser_defs {
+  parser_name: "annotations_literals"
+  url_regexp: "^http://annotations.com/"
+
+  relation_tmpls {
+    subject: "bar"
+    predicate: "bap"
+    object: "bas"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+
+    annotation_tmpls {
+      name: "ban"
+      value: "bam"
+      value_cardinality: ONE
+    }
+  }
+
+  relation_tmpls {
+    subject: "car"
+    predicate: "cap"
+    object: "cas"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+
+    annotation_tmpls {
+      name: "can"
+      value: "cam"
+      value_cardinality: MANY
+    }
+  }
+
+  relation_tmpls {
+    subject: "baz"
+    predicate: "date"
+    object: "//td[@class='v_date']"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+
+    annotation_tmpls {
+      name: "rating"
+      value: "5"
+      value_cardinality: ONE
+    }
+  }
+}
+
+# Tests that we emit the expected number of relations when subject and object
+# cardinalities are both ONE, but some annotation has cardinality MANY.
+parser_defs {
+  parser_name: "annotations_one_one_many"
+  url_regexp: "^http://annotations.com/"
+
+  relation_tmpls {
+    subject: "par"
+    predicate: "pap"
+    object: "pas"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+
+    annotation_tmpls {
+      name: "date"
+      value: "//td[@class='v_date']"
+      value_cardinality: MANY
+    }
+  }
+
+  relation_tmpls {
+    subject: "bar"
+    predicate: "bap"
+    object: "bas"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+
+    annotation_tmpls {
+      name: "ban"
+      value: "bam"
+      value_cardinality: ONE
+    }
+    annotation_tmpls {
+      name: "fruit"
+      value: "//td[@class='v_fruit']"
+      value_cardinality: MANY
+    }
+  }
+
+  relation_tmpls {
+    subject: "car"
+    predicate: "cap"
+    object: "cas"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+
+    annotation_tmpls {
+      name: "can"
+      value: "cam"
+      value_cardinality: MANY
+    }
+  }
+}
+
+# Tests that we properly skip individual annotations that don't produce the
+# expected number of values.
+parser_defs {
+  parser_name: "annotations_skip"
+  url_regexp: "^http://annotations.com/"
+  userdata: "should_abort"
+
+  relation_tmpls {
+    subject: "foo"
+    predicate: "bar"
+    object: "//td[@class='v_fruit']"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+
+    # This annotation should be skipped since it produces 3 values while object
+    # produces 4 values.
+    annotation_tmpls {
+      name: "date"
+      value: "//td[@class='v_date']"
+      value_cardinality: MANY
+    }
+  }
+
+  relation_tmpls {
+    subject: "foo"
+    predicate: "bar"
+    object: "baz"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+
+    # This annotation should be skipped since it produces 3 values while object
+    # has cardinality MANY and produces 1 value.
+    annotation_tmpls {
+      name: "date"
+      value: "//td[@class='v_date']"
+      value_cardinality: MANY
+    }
+  }
+
+  relation_tmpls {
+    subject: "foo"
+    predicate: "bar"
+    object: "baz"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+
+    # This annotation should produce 3 values.
+    annotation_tmpls {
+      name: "date"
+      value: "//td[@class='v_date']"
+      value_cardinality: MANY
+    }
+
+    # This annotation should be skipped since it produces 4 values while the
+    # previous annotation produces 3 values.
+    annotation_tmpls {
+      name: "fruit"
+      value: "//td[@class='v_fruit']"
+      value_cardinality: MANY
+    }
+  }
+}

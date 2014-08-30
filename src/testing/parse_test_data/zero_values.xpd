@@ -1,0 +1,153 @@
+# Copyright 2011 Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Tests that RelationTemplates produce zero relations if any of the following
+# are true:
+#   * Subject matches zero values
+#   * Object matches zero values
+#   * QueryDef ExtractOp regexp filters out all matches
+
+parser_defs {
+  parser_name: "zero_values"
+  url_regexp: "^http://zero_values.com/"
+  userdata: "should_abort"
+
+  #############
+  # QueryDefs
+
+  query_defs {
+    name: "ninjas_only"
+    query: "//td[@class='fr_occ']"
+    post_processing_ops {
+      extract_op {
+        regexp: "(Ninja)"
+      }
+    }
+  }
+
+  query_defs {
+    name: "bankers_only"
+    query: "//td[@class='fr_occ']"
+    post_processing_ops {
+      extract_op {
+        regexp: "(Banker)"
+      }
+    }
+  }
+
+  query_defs {
+    name: "lawyers_only"
+    query: "//td[@class='fr_occ']"
+    post_processing_ops {
+      extract_op {
+        regexp: "(Lawyer)"
+      }
+    }
+  }
+
+  #############
+  # Relations
+
+  relation_tmpls {
+    subject: "one_to_one"
+    predicate: "pred"
+    object: "//does_not_exist"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+
+  relation_tmpls {
+    subject: "one_to_many"
+    predicate: "pred"
+    object: "//does_not_exist"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+  }
+
+  relation_tmpls {
+    subject: "many_to_one"
+    predicate: "pred"
+    object: "//does_not_exist"
+
+    subject_cardinality: MANY
+    object_cardinality: ONE
+  }
+
+  relation_tmpls {
+    subject: "many_to_many"
+    predicate: "pred"
+    object: "//does_not_exist"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+  }
+
+  relation_tmpls {
+    subject: "//does_not_exist"
+    predicate: "pred"
+    object: "//also_does_not_exist"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+
+  relation_tmpls {
+    subject: "//does_not_exist"
+    predicate: "pred"
+    object: "//also_does_not_exist"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+  }
+
+  relation_tmpls {
+    subject: "foo"
+    predicate: "bar"
+    object: "%ninjas_only%"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+  }
+
+  relation_tmpls {
+    subject: "%bankers_only%"
+    predicate: "foo"
+    object: "%lawyers_only%"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+  }
+
+  # Make sure that %bankers_only% matches something by itself.
+  relation_tmpls {
+    subject: "//td[@class='fr_name']"
+    predicate: "occ"
+    object: "%bankers_only%"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+  }
+
+  # Make sure that %lawyers_only% matches something by itself.
+  relation_tmpls {
+    subject: "//td[@class='fr_name']"
+    predicate: "occ"
+    object: "%lawyers_only%"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+  }
+}

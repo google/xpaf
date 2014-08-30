@@ -1,0 +1,93 @@
+url: "http://simple.com/adam.html"
+parser_outputs {
+  parser_name: "simple_absolute_urls"
+  relations {
+    subject: "http://simple.com/george.html"
+    predicate: "name"
+    object: "George"
+  }
+  relations {
+    subject: "http://simple.com/mel.html"
+    predicate: "name"
+    object: "Melissa"
+  }
+  relations {
+    subject: "http://foo.com/jessica.html"
+    predicate: "name"
+    object: "Jessica"
+  }
+  relations {
+    subject: "george"
+    predicate: "photo"
+    object: "http://simple.com/george.jpg"
+  }
+}
+parser_outputs {
+  parser_name: "simple_predefined_queries"
+  relations {
+    subject: "http://simple.com/adam.html"
+    predicate: "is"
+    object: "http://simple.com/adam.html"
+  }
+}
+parser_outputs {
+  parser_name: "simple"
+  relations {
+    subject: "Adam"
+    predicate: "occupation"
+    object: "Engineer"
+  }
+  relations {
+    subject: "George"
+    predicate: "has_friend_with_occupation"
+    object: "Engineer"
+  }
+  relations {
+    subject: "Melissa"
+    predicate: "has_friend_with_occupation"
+    object: "Engineer"
+  }
+  relations {
+    subject: "Jessica"
+    predicate: "has_friend_with_occupation"
+    object: "Engineer"
+  }
+  relations {
+    subject: "Adam"
+    predicate: "has_friend_with_occupation"
+    object: "Banker"
+  }
+  relations {
+    subject: "Adam"
+    predicate: "has_friend_with_occupation"
+    object: "Lawyer"
+  }
+}
+parser_outputs {
+  parser_name: "simple_literals"
+  relations {
+    subject: "Adam"
+    predicate: "foo"
+    object: "bar"
+  }
+  relations {
+    subject: "qat"
+    predicate: "het"
+    object: "Banker"
+  }
+  relations {
+    subject: "qat"
+    predicate: "het"
+    object: "Lawyer"
+  }
+  relations {
+    subject: "foo"
+    predicate: "bar"
+    object: "baz"
+  }
+  relations {
+    subject: "fop"
+    predicate: "bas"
+    object: "baa"
+  }
+}

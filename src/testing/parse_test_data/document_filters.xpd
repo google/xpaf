@@ -1,0 +1,44 @@
+# Copyright 2011 Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Tests that document-level parsing filters work as expected. (Currently, the
+# only such filter is url_regexp.)
+
+parser_defs {
+  parser_name: "document_filters_url_regexp_accept"
+  url_regexp: "^http://document_filters.com/foo"
+
+  relation_tmpls {
+    subject: "foo"
+    predicate: "bar"
+    object: "baz"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+}
+
+parser_defs {
+  parser_name: "document_filters_url_regexp_reject"
+  url_regexp: "^http://document_filters.com/bar"
+
+  relation_tmpls {
+    subject: "foo"
+    predicate: "bar"
+    object: "baz"
+
+    subject_cardinality: ONE
+    object_cardinality: ONE
+  }
+}

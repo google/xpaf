@@ -1,0 +1,9 @@
+url: "http://chained_pp_ops.com/adam.html"
+parser_outputs {
+  parser_name: "chained_pp_ops"
+  relations {
+    subject: "Engineer"
+    predicate: "misperceived_as"
+    object: "nerd"
+  }
+}

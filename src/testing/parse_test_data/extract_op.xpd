@@ -1,0 +1,142 @@
+# Copyright 2011 Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Tests that ExtractOp works as expected, particularly that failed extraction is
+# handled correctly.
+
+parser_defs {
+  parser_name: "extract_op"
+  url_regexp: "^http://extract_op.com/"
+  userdata: "should_abort"
+
+  query_defs {
+    name: "friend_occupation_first_char"
+    query: "//td[@class='fr_occ']"
+    post_processing_ops {
+      extract_op {
+        regexp: "^(.)"
+      }
+    }
+  }
+
+  query_defs {
+    name: "friend_name_ends_in_a"
+    query: "//td[@class='fr_name']"
+    post_processing_ops {
+      extract_op {
+        regexp: "(...a)$"
+      }
+    }
+  }
+
+  query_group_defs {
+    name: "friend"
+
+    root_query: "//table/tr"
+
+    query_defs {
+      name: "name_starts_with_M"
+      query: "/td[@class='fr_name']"
+      post_processing_ops {
+        extract_op {
+          regexp: "^(M...)"
+        }
+      }
+    }
+
+    query_defs {
+      name: "name_ends_in_a"
+      query: "/td[@class='fr_name']"
+      post_processing_ops {
+        extract_op {
+          regexp: "(...a)$"
+        }
+      }
+    }
+
+    query_defs {
+      name: "age"
+      query: "/td[@class='fr_age']"
+    }
+  }
+
+  # This one should produce two relations.
+  relation_tmpls {
+    subject: "//div[@id='name']"
+    predicate: "foo"
+    object: "%friend_occupation_first_char%"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+  }
+
+  # This one should also produce two relations.
+  relation_tmpls {
+    subject: "//div[@id='name']"
+    predicate: "bar"
+    object: "%friend_name_ends_in_a%"
+
+    subject_cardinality: ONE
+    object_cardinality: MANY
+  }
+
+  # This one should produce two relations, since the QueryDef matches three
+  # nodes prior to applying regexps, and the QueryGroupDef matches three nodes
+  # (two of which have values for %friend.age%). Convoluted, I know. Nobody
+  # should write parsers like this in practice.
+  relation_tmpls {
+    subject: "%friend_name_ends_in_a%"
+    predicate: "baz"
+    object: "%friend.age%"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+    userdata: "not_from_group"
+  }
+
+  # This one should produce zero relations, since subject matches two nodes,
+  # while object matches three nodes (for the reason explained above).
+  relation_tmpls {
+    subject: "%friend_occupation_first_char%"
+    predicate: "het"
+    object: "%friend.age%"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+  }
+
+  # This one should produce two relations, since subject and object come from
+  # the same group.
+  relation_tmpls {
+    subject: "%friend.name_ends_in_a%"
+    predicate: "baz"
+    object: "%friend.age%"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+    userdata: "from_group"
+  }
+
+  # This one should produce one relation, since subject and object come from the
+  # same group, but only one name starts with M.
+  relation_tmpls {
+    subject: "%friend.name_starts_with_M%"
+    predicate: "qat"
+    object: "%friend.age%"
+
+    subject_cardinality: MANY
+    object_cardinality: MANY
+    userdata: "from_group"
+  }
+}
