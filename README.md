@@ -5,7 +5,7 @@ XPath-based Parsing Framework (XPaF) is a simple, fast, open-source parsing
 framework that makes it easy to extract relations (subject-predicate-object
 triples) from HTML and XML documents.
 
-Documentation is available [here](http://xpaf.googlecode.com/hg/doc/index.html).
+Documentation is available [here](http://htmlpreview.github.io/?https://github.com/google/xpaf/blob/master/doc/index.html).
 
 Copyright 2011 Google Inc. All Rights Reserved.
 
