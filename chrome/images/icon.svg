@@ -3,23 +3,25 @@
 <!-- http://www.w3schools.com/svg/svg_grad_linear.asp -->
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128">
   <defs>
-    <style type="text/css">
+    <style>
+      <![CDATA[
       @font-face {
-        font-family: 'Indie Flower';
-        src: url(IndieFlower.ttf);
+        font-family: "Indie Flower";
+        src: url("IndieFlower.ttf") format("truetype");
       }
       text {
         color: #fff;
         dominant-baseline: central;
-        font: bold 96px 'Indie Flower';
+        font: 96px "Indie Flower";
         text-anchor: middle;
       }
+      ]]>
     </style>
     <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#37474f"/>
+      <stop offset="0%" stop-color="#455a64"/>
       <stop offset="100%" stop-color="#263238"/>
     </linearGradient>
   </defs>
-  <rect x="16" y="16" rx="8" ry="8" width="96" height="96" fill="url(#grad)"/>
+  <rect x="16" y="16" rx="16" ry="16" width="96" height="96" fill="url(#grad)"/>
   <text x="64" y="64" fill="#fff">X</text>
 </svg>
