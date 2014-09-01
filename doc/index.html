@@ -2,8 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home - XPaF</title>
-  <link rel="stylesheet" type="text/css" href="xpaf.css">
+  <link rel="stylesheet" href="xpaf.css">
 </head>
 <body>
 <div id="content">
@@ -11,13 +12,13 @@
 
 <h2>Description</h2>
 
-<p>XPath-based Parsing Framework (XPaF) is a simple, fast, <a href="http://code.google.com/p/xpaf/">open-source</a> parsing framework that makes it easy to extract relations (subject-predicate-object triples) from HTML and XML documents.</p>
+<p>XPath-based Parsing Framework (XPaF) is a simple, fast, <a href="https://github.com/google/xpaf">open-source</a> parsing framework that makes it easy to extract relations (subject-predicate-object triples) from HTML and XML documents.</p>
 
 <p>For a quick example, see below. When you're ready for more, check out the <a href="tutorial.html">tutorial</a> or the <a href="faq.html">FAQ</a>.</p>
 
 <h2>Installation</h2>
 
-<p>Unix installation instructions are available <a href="http://code.google.com/p/xpaf/source/browse/README">here</a>.</p>
+<p>Unix installation instructions are available <a href="https://github.com/google/xpaf/blob/master/README.md">here</a>.</p>
 
 <h2>Quick example</h2>
 
@@ -61,7 +62,7 @@ ParsedDocument output;
 master.ParseDocument(doc, &amp;output);
 </pre>
 
-<p>For the HTML snippet and parser above, XPaF would produce the following output, encoded as a <a href="http://code.google.com/p/xpaf/source/browse/src/parsed_document.proto#44"><span class="code-inline">ParsedDocument</span></a> protocol buffer object:</p>
+<p>For the HTML snippet and parser above, XPaF would produce the following output, encoded as a <a href="https://github.com/google/xpaf/blob/master/src/parsed_document.proto"><span class="code-inline">ParsedDocument</span></a> protocol buffer object:</p>
 
 <pre class="code-block">
 parser_name: "my_parser"
@@ -79,17 +80,17 @@ relations {
 
 <p>For a more detailed example, check out the <a href="tutorial.html">tutorial</a>.</p>
 
-<p>The full parser specification language can be found <a href="http://code.google.com/p/xpaf/source/browse/src/xpaf_parser_def.proto">here</a> (start with <span class="code-inline">XPafParserDef</span>).</p>
+<p>The full parser specification language can be found <a href="https://github.com/google/xpaf/blob/master/src/xpaf_parser_def.proto">here</a> (start with <span class="code-inline">XPafParserDef</span>).</p>
 
 <h2>Chrome extension</h2>
 
 <p>The <a href="https://chrome.google.com/webstore/detail/hgimnogjllphhhkhlmebbmlgjoejdpjl">XPath Helper Chrome extension</a> makes it easy to extract, edit, and evaluate XPath queries on any webpage. It's very helpful for writing XPaF parsers.</p>
 
-<p>The source code for XPath Helper is available <a href="http://code.google.com/p/xpaf/source/browse/#hg%2Fchrome">here</a>.</p>
+<p>The source code for XPath Helper is available <a href="https://github.com/google/xpaf/tree/master/chrome">here</a>.</p>
 
 </div>
 <div id="footer"><em>Adam Sadovsky</em></div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="prettify.js"></script>
+<script src="prettify.js"></script>
 </body>
 </html>

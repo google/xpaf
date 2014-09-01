@@ -2,8 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tutorial - XPaF</title>
-  <link rel="stylesheet" type="text/css" href="xpaf.css">
+  <link rel="stylesheet" href="xpaf.css">
 </head>
 <body>
 <div id="content">
@@ -19,7 +20,7 @@
 
 <p>Before you proceed, we strongly encourage you to install the <a href="https://chrome.google.com/webstore/detail/hgimnogjllphhhkhlmebbmlgjoejdpjl">XPath Helper Chrome extension</a>, which makes it easy to extract, edit, and evaluate XPath queries on any webpage. Then, as you make your way through this tutorial, you can use the extension to identify XPath queries for fields we're trying to extract, and then simplify those queries by editing them in the console. You can also take queries directly from the parsers below, paste them into the console, and see their evaluated results. (It's probably worth noting that we used XPath Helper extensively when writing this tutorial!)</p>
 
-<p>If you want to run the parsers from this tutorial, you'll need to install XPaF. Unix installation instructions are available <a href="http://code.google.com/p/xpaf/source/browse/README">here</a>.</p>
+<p>If you want to run the parsers from this tutorial, you'll need to install XPaF. Unix installation instructions are available <a href="https://github.com/google/xpaf/blob/master/README.md">here</a>.</p>
 
 <p><em>Note: We use Bill Gates's Twitter page strictly as an example. We do not encourage activities that violate Twitter's terms of service.</em></p>
 
@@ -318,7 +319,7 @@ parser_outputs {
 
 <p>As noted previously, XPaF handles this situation as best it can -- it outputs zero relations. But now consider a far more dire scenario: Suppose Bill's first followee has a photo but no url, and his second followee has a url but no photo. In this case, XPath would happily return 35 results for each of our queries, and we'd incorrectly associate the first followee's photo with the second's url. Yikes!</p>
 
-<p>QueryGroupDefs are designed specifically to deal with this situation. A QueryGroupDef defines a group of queries that share a DOM root node; it consists of a name, a "root query" that identifies root nodes, and a list of QueryDefs with queries relative to the root query. The gory details can be found <a href="http://code.google.com/p/xpaf/source/browse/src/xpaf_parser_def.proto">here</a> (search for <span class="code-inline">QueryGroupDef</span>), but for the purposes of this tutorial a quick example should suffice:</p>
+<p>QueryGroupDefs are designed specifically to deal with this situation. A QueryGroupDef defines a group of queries that share a DOM root node; it consists of a name, a "root query" that identifies root nodes, and a list of QueryDefs with queries relative to the root query. The gory details can be found <a href="https://github.com/google/xpaf/blob/master/src/xpaf_parser_def.proto">here</a> (search for <span class="code-inline">QueryGroupDef</span>), but for the purposes of this tutorial a quick example should suffice:</p>
 
 <pre class="code-block">
 parser_name: "my_twitter_parser"
@@ -562,13 +563,13 @@ parser_outputs {
 <br>TODO(sadovsky): Maybe move this to FAQ?</p>
 </div>
 
-<p>All of these features are described in more detail in the <a href="http://code.google.com/p/xpaf/source/browse/src/xpaf_parser_def.proto">XPaF parser specification</a>.</p>
+<p>All of these features are described in more detail in the <a href="https://github.com/google/xpaf/blob/master/src/xpaf_parser_def.proto">XPaF parser specification</a>.</p>
 
 <h2>Resources</h2>
 
-<p>Hopefully this tutorial has given you a flavor for what's possible with XPaF. However, in the interest of brevity, plenty of details were omitted; the full XPaF parser specification is available <a href="http://code.google.com/p/xpaf/source/browse/src/xpaf_parser_def.proto">here</a>. For the adventurous, a brief stroll through the <a href="http://code.google.com/p/xpaf/source/browse/src">XPaF implementation</a> is highly recommended (start with <span class="code-inline">xpaf_parser.h</span>).</p>
+<p>Hopefully this tutorial has given you a flavor for what's possible with XPaF. However, in the interest of brevity, plenty of details were omitted; the full XPaF parser specification is available <a href="https://github.com/google/xpaf/blob/master/src/xpaf_parser_def.proto">here</a>. For the adventurous, a brief stroll through the <a href="https://github.com/google/xpaf/tree/master/src">XPaF implementation</a> is highly recommended (start with <span class="code-inline">xpaf_parser.h</span>).</p>
 
-<p>More examples of XPaF parsers can be found in the <a href="http://code.google.com/p/xpaf/source/browse/src/testing/parse_test_data">unit test directory</a>. These tests are (or ought to be) comprehensive; everything described in this tutorial should have an associated test.</p>
+<p>More examples of XPaF parsers can be found in the <a href="https://github.com/google/xpaf/tree/master/src/testing/parse_test_data">unit test directory</a>. These tests are (or ought to be) comprehensive; everything described in this tutorial should have an associated test.</p>
 
 <p>We also recommend reading through the <a href="faq.html">FAQ</a> and installing the <a href="https://chrome.google.com/webstore/detail/hgimnogjllphhhkhlmebbmlgjoejdpjl">XPath Helper Chrome extension</a>, if you haven't done so already.</p>
 
@@ -578,7 +579,7 @@ parser_outputs {
 </div>
 <div id="footer"><em>Adam Sadovsky</em></div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="prettify.js"></script>
-<script type="text/javascript" src="tutorial.js"></script>
+<script src="prettify.js"></script>
+<script src="tutorial.js"></script>
 </body>
 </html>
