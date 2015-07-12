@@ -21,8 +21,12 @@
 
 'use strict';
 
-function handleRequest(request, sender, callback) {
+function handleRequest(request, sender, cb) {
   // Simply relay the request. This lets content.js talk to bar.js.
-  chrome.tabs.sendMessage(sender.tab.id, request, callback);
+  chrome.tabs.sendMessage(sender.tab.id, request, cb);
 }
-chrome.extension.onMessage.addListener(handleRequest);
+chrome.runtime.onMessage.addListener(handleRequest);
+
+chrome.browserAction.onClicked.addListener(function(tab) {
+  chrome.tabs.sendMessage(tab.id, {type: 'toggleBar'});
+});

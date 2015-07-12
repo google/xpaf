@@ -19,8 +19,4 @@
   <rect x="16" y="16" rx="16" ry="16" width="96" height="96" fill="url(#grad)"/>
   <text x="64" y="87" fill="#fff" font-size="96px" font-family="Indie Flower"
         text-anchor="middle">X</text>
-  <!--
-  <text x="64" y="64" fill="#fff" font-size="96px" font-family="Indie Flower"
-        text-anchor="middle" dominant-baseline="central">X</text>
-  -->
 </svg>

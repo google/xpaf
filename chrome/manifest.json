@@ -1,10 +1,16 @@
 {
   "manifest_version": 2,
   "name": "XPath Helper",
-  "version": "1.0.13",
+  "version": "2.0.0",
   "description": "Extract, edit, and evaluate XPath queries with ease.",
   "background": {
     "page": "background.html"
+  },
+  "browser_action": {
+    "default_icon": {
+      "19": "static/icon_19x19.png",
+      "38": "static/icon_38x38.png"
+    }
   },
   "content_scripts": [
     {
@@ -14,9 +20,10 @@
     }
   ],
   "icons": {
-    "32": "static/icon32.png",
-    "48": "static/icon48.png",
-    "128": "static/icon128.png"
+    "16": "static/icon_16x16.png",
+    "32": "static/icon_32x32.png",
+    "48": "static/icon_48x48.png",
+    "128": "static/icon_128x128.png"
   },
   "web_accessible_resources": [
     "bar.css",

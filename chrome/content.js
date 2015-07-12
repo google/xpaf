@@ -24,32 +24,20 @@
 // Extension namespace.
 var xh = xh || {};
 
-
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 // Generic helper functions and constants
 
 xh.SHIFT_KEYCODE = 16;
 xh.X_KEYCODE = 88;
 
-xh.bind = function(object, method) {
-  return function() {
-    return method.apply(object, arguments);
-  };
-};
-
 xh.elementsShareFamily = function(primaryEl, siblingEl) {
-  if (primaryEl.tagName === siblingEl.tagName &&
-      (!primaryEl.className || primaryEl.className === siblingEl.className) &&
-      (!primaryEl.id || primaryEl.id === siblingEl.id)) {
-    return true;
-  }
-  return false;
+  var p = primaryEl, s = siblingEl;
+  return (p.tagName === s.tagName &&
+          (!p.className || p.className === s.className) &&
+          (!p.id || p.id === s.id));
 };
 
 xh.getElementIndex = function(el) {
-  var className = el.className;
-  var id = el.id;
-
   var index = 1;  // XPath is one-indexed
   var sib;
   for (sib = el.previousSibling; sib; sib = sib.previousSibling) {
@@ -92,15 +80,15 @@ xh.makeQueryForElement = function(el) {
 
 xh.highlightNodes = function(nodes) {
   for (var i = 0, l = nodes.length; i < l; i++) {
-    nodes[i].className += ' xh-highlight';
+    nodes[i].classList.add('xh-highlight');
   }
 };
 
 xh.clearHighlights = function() {
-  var els = document.getElementsByClassName('xh-highlight');
-  // Note: getElementsByClassName() returns a live NodeList.
+  var els = document.querySelectorAll('.xh-highlight');
+  els = Array.prototype.slice.call(els);
   while (els.length) {
-    els[0].className = els[0].className.replace(' xh-highlight', '');
+    els.pop().classList.remove('xh-highlight');
   }
 };
 
@@ -158,41 +146,30 @@ xh.evaluateQuery = function(query) {
   return [str, nodeCount];
 };
 
-
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 // xh.Bar class definition
 
 xh.Bar = function() {
-  this.boundShowBar_ = xh.bind(this, this.showBar_);
-  this.boundHandleRequest_ = xh.bind(this, this.handleRequest_);
-  this.boundMouseMove_ = xh.bind(this, this.mouseMove_);
-  this.boundKeyDown_ = xh.bind(this, this.keyDown_);
+  this.boundHandleRequest_ = this.handleRequest_.bind(this);
+  this.boundMouseMove_ = this.mouseMove_.bind(this);
+  this.boundKeyDown_ = this.keyDown_.bind(this);
 
-  chrome.extension.onMessage.addListener(this.boundHandleRequest_);
+  this.inDOM_ = false;
+  this.currEl_ = null;
 
   this.barFrame_ = document.createElement('iframe');
-  this.barFrame_.src = chrome.extension.getURL('bar.html');
+  this.barFrame_.src = chrome.runtime.getURL('bar.html');
   this.barFrame_.id = 'xh-bar';
-  this.barFrame_.className = 'top';
-  this.barFrame_.style.height = '0';
-
-  // Temporarily make bar 'hidden' and add it to the DOM. Once the bar's html
-  // has loaded, it will send us a message with its height, at which point we'll
-  // set this.barHeightInPx_, remove it from the DOM, and make it 'visible'.
-  // We'll add it back to the DOM on the first bar request.
-  this.barFrame_.style.visibility = 'hidden';
-  document.body.appendChild(this.barFrame_);
+  // Init to hidden so first showBar_() triggers fade-in.
+  this.barFrame_.classList.add('hidden');
 
   document.addEventListener('keydown', this.boundKeyDown_);
+  chrome.runtime.onMessage.addListener(this.boundHandleRequest_);
 };
 
-xh.Bar.prototype.active_ = false;
-xh.Bar.prototype.barFrame_ = null;
-xh.Bar.prototype.barHeightInPx_ = 0;
-xh.Bar.prototype.currEl_ = null;
-xh.Bar.prototype.boundHandleRequest_ = null;
-xh.Bar.prototype.boundMouseMove_ = null;
-xh.Bar.prototype.boundKeyDown_ = null;
+xh.Bar.prototype.hidden_ = function() {
+  return this.barFrame_.classList.contains('hidden');
+};
 
 xh.Bar.prototype.updateQueryAndBar_ = function(el) {
   xh.clearHighlights();
@@ -200,49 +177,60 @@ xh.Bar.prototype.updateQueryAndBar_ = function(el) {
   this.updateBar_(true);
 };
 
-xh.Bar.prototype.updateBar_ = function(update_query) {
+xh.Bar.prototype.updateBar_ = function(updateQuery) {
   var results = this.query_ ? xh.evaluateQuery(this.query_) : ['', 0];
-  var request = {
-    'type': 'update',
-    'query': update_query ? this.query_ : null,
-    'results': results
-  };
-  chrome.extension.sendMessage(request);
+  chrome.runtime.sendMessage({
+    type: 'update',
+    query: updateQuery ? this.query_ : null,
+    results: results
+  });
 };
 
 xh.Bar.prototype.showBar_ = function() {
-  this.barFrame_.style.height = this.barHeightInPx_ + 'px';
-  document.addEventListener('mousemove', this.boundMouseMove_);
-  this.updateBar_(true);
+  var that = this;
+  function impl() {
+    that.barFrame_.classList.remove('hidden');
+    document.addEventListener('mousemove', that.boundMouseMove_);
+    that.updateBar_(true);
+  }
+  if (!this.inDOM_) {
+    this.inDOM_ = true;
+    document.body.appendChild(this.barFrame_);
+  }
+  window.setTimeout(impl, 0);
 };
 
 xh.Bar.prototype.hideBar_ = function() {
-  // Note: It's important to set this.active_ to false here rather than in
-  // keyDown_() because hideBar_() could be called via handleRequest_().
-  this.active_ = false;
-  xh.clearHighlights();
-  document.removeEventListener('mousemove', this.boundMouseMove_);
-  this.barFrame_.style.height = '0';
+  var that = this;
+  function impl() {
+    that.barFrame_.classList.add('hidden');
+    document.removeEventListener('mousemove', that.boundMouseMove_);
+    xh.clearHighlights();
+  }
+  window.setTimeout(impl, 0);
 };
 
-xh.Bar.prototype.handleRequest_ = function(request, sender, callback) {
-  if (request['type'] === 'height' && this.barHeightInPx_ === 0) {
-    this.barHeightInPx_ = request['height'];
-    // Now that we've saved the bar's height, remove it from the DOM and make it
-    // 'visible'.
-    document.body.removeChild(this.barFrame_);
-    this.barFrame_.style.visibility = 'visible';
-  } else if (request['type'] === 'evaluate') {
+xh.Bar.prototype.toggleBar_ = function() {
+  if (this.hidden_()) {
+    this.showBar_();
+  } else {
+    this.hideBar_();
+  }
+};
+
+xh.Bar.prototype.handleRequest_ = function(request, sender, cb) {
+  if (request.type === 'evaluate') {
     xh.clearHighlights();
-    this.query_ = request['query'];
+    this.query_ = request.query;
     this.updateBar_(false);
-  } else if (request['type'] === 'relocateBar') {
+  } else if (request.type === 'moveBar') {
     // Move iframe to a different part of the screen.
-    this.barFrame_.className = (
-      this.barFrame_.className === 'top' ? 'middle' : 'top');
-  } else if (request['type'] === 'hideBar') {
+    this.barFrame_.classList.toggle('bottom');
+  } else if (request.type === 'hideBar') {
     this.hideBar_();
     window.focus();
+  } else if (request.type === 'toggleBar') {
+    this.toggleBar_();
   }
 };
 
@@ -257,38 +245,23 @@ xh.Bar.prototype.mouseMove_ = function(e) {
 };
 
 xh.Bar.prototype.keyDown_ = function(e) {
-  if (e.keyCode === xh.X_KEYCODE && e.ctrlKey && e.shiftKey) {
-    if (!this.active_) {
-      this.active_ = true;
-      if (!this.barFrame_.parentNode) {
-        // First bar request on this page. Add bar back to DOM.
-        document.body.appendChild(this.barFrame_);
-        // Use setTimeout so that the transition is visible.
-        window.setTimeout(this.boundShowBar_, 0);
-      } else {
-        this.showBar_();
-      }
-    } else {
-      this.hideBar_();
-    }
+  var ctrlKey = e.ctrlKey || e.metaKey;
+  var shiftKey = e.shiftKey;
+  if (e.keyCode === xh.X_KEYCODE && ctrlKey && shiftKey) {
+    this.toggleBar_();
   }
-
   // If the user just pressed Shift and they're not holding Ctrl, update query.
   // Note that we rely on the mousemove handler to have updated this.currEl_.
   // Also, note that checking e.shiftKey wouldn't work here, since Shift is the
   // key that triggered this event.
-  if (this.active_ && e.keyCode === xh.SHIFT_KEYCODE && !e.ctrlKey) {
+  if (!this.hidden_() && !ctrlKey && e.keyCode === xh.SHIFT_KEYCODE) {
     this.updateQueryAndBar_(this.currEl_);
   }
 };
 
-
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 // Initialization code
 
-if (window['xhBarInstance']) {
-  window['xhBarInstance'].dispose();
-}
 if (location.href.indexOf('acid3.acidtests.org') === -1) {
-  window['xhBarInstance'] = new xh.Bar();
+  window.xhBarInstance = new xh.Bar();
 }

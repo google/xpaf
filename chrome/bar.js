@@ -22,7 +22,7 @@
 'use strict';
 
 // Constants.
-var RELOCATE_COOLDOWN_PERIOD_MS = 400;
+var MOVE_COOLDOWN_PERIOD_MS = 400;
 var X_KEYCODE = 88;
 
 // Global variables.
@@ -33,18 +33,17 @@ var nodeCountEl = document.getElementById('node-count');
 var nodeCountText = document.createTextNode('0');
 nodeCountEl.appendChild(nodeCountText);
 
-// Used by handleMouseMove() to enforce a cooldown period on relocate.
-var mostRecentRelocateTimeInMs = 0;
+// Used by handleMouseMove() to enforce a cooldown period on move.
+var lastMoveTimeInMs = 0;
 
 var evaluateQuery = function() {
-  var request = {
-    'type': 'evaluate',
-    'query': queryEl.value
-  };
-  chrome.extension.sendMessage(request);
+  chrome.runtime.sendMessage({
+    type: 'evaluate',
+    query: queryEl.value
+  });
 };
 
-var handleRequest = function(request, sender, callback) {
+var handleRequest = function(request, sender, cb) {
   // Note: Setting textarea's value and text node's nodeValue is XSS-safe.
   if (request['type'] === 'update') {
     if (request['query'] !== null) {
@@ -59,22 +58,23 @@ var handleRequest = function(request, sender, callback) {
 
 var handleMouseMove = function(e) {
   if (e.shiftKey) {
-    // Only relocate if we aren't in the cooldown period. Note, the cooldown
+    // Only move bar if we aren't in the cooldown period. Note, the cooldown
     // duration should take CSS transition time into consideration.
     var timeInMs = new Date().getTime();
-    if (timeInMs - mostRecentRelocateTimeInMs < RELOCATE_COOLDOWN_PERIOD_MS) {
+    if (timeInMs - lastMoveTimeInMs < MOVE_COOLDOWN_PERIOD_MS) {
       return;
     }
-    mostRecentRelocateTimeInMs = timeInMs;
-
+    lastMoveTimeInMs = timeInMs;
     // Tell content script to move iframe to a different part of the screen.
-    chrome.extension.sendMessage({'type': 'relocateBar'});
+    chrome.runtime.sendMessage({type: 'moveBar'});
   }
 };
 
 var handleKeyDown = function(e) {
-  if (e.keyCode === X_KEYCODE && e.ctrlKey && e.shiftKey) {
-    chrome.extension.sendMessage({'type': 'hideBar'});
+  var ctrlKey = e.ctrlKey || e.metaKey;
+  var shiftKey = e.shiftKey;
+  if (e.keyCode === X_KEYCODE && ctrlKey && shiftKey) {
+    chrome.runtime.sendMessage({type: 'hideBar'});
   }
 };
 
@@ -83,14 +83,8 @@ queryEl.addEventListener('mouseup', evaluateQuery);
 
 // Add mousemove listener so we can detect Shift + mousemove inside iframe.
 document.addEventListener('mousemove', handleMouseMove);
-// Add keydown listener so we can detect Ctrl-Shift-X and tell content script to
-// steal focus and hide bar.
+// Add keydown listener so we can detect Ctrl-Shift-X and tell the content
+// script to hide iframe and steal focus.
 document.addEventListener('keydown', handleKeyDown);
 
-chrome.extension.onMessage.addListener(handleRequest);
-
-var request = {
-  'type': 'height',
-  'height': document.documentElement.offsetHeight
-};
-chrome.extension.sendMessage(request);
+chrome.runtime.onMessage.addListener(handleRequest);

@@ -1,0 +1,8 @@
+{
+  "name": "xpaf-crx",
+  "version": "0.0.1",
+  "devDependencies": {
+    "jshint": "^2.8.0"
+  },
+  "license": "Apache-2.0"
+}

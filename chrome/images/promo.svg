@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- http://www.google.com/design/spec/style/color.html -->
+<!-- http://www.w3schools.com/svg/svg_grad_linear.asp -->
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="280">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#455a64"/>
+      <stop offset="100%" stop-color="#263238"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="100%" height="100%" fill="url(#grad)"/>
+  <text x="50%" y="50%" fill="#fff" font-size="48px" font-family="serif"
+        dominant-baseline="central" text-anchor="middle">XPath Helper</text>
+</svg>
