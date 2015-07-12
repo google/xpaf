@@ -29,7 +29,6 @@ function addImage(src, width, height) {
   };
 }
 
-
 var src = 'icon_base64.svg';
 addImage(src, 16, 16);
 addImage(src, 19, 19);
