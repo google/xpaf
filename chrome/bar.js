@@ -45,13 +45,13 @@ var evaluateQuery = function() {
 
 var handleRequest = function(request, sender, cb) {
   // Note: Setting textarea's value and text node's nodeValue is XSS-safe.
-  if (request['type'] === 'update') {
-    if (request['query'] !== null) {
-      queryEl.value = request['query'];
+  if (request.type === 'update') {
+    if (request.query !== null) {
+      queryEl.value = request.query;
     }
-    if (request['results'] !== null) {
-      resultsEl.value = request['results'][0];
-      nodeCountText.nodeValue = request['results'][1];
+    if (request.results !== null) {
+      resultsEl.value = request.results[0];
+      nodeCountText.nodeValue = request.results[1];
     }
   }
 };

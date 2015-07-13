@@ -78,17 +78,16 @@ xh.makeQueryForElement = function(el) {
   return query;
 };
 
-xh.highlightNodes = function(nodes) {
-  for (var i = 0, l = nodes.length; i < l; i++) {
-    nodes[i].classList.add('xh-highlight');
+xh.highlight = function(els) {
+  for (var i = 0, l = els.length; i < l; i++) {
+    els[i].classList.add('xh-highlight');
   }
 };
 
 xh.clearHighlights = function() {
   var els = document.querySelectorAll('.xh-highlight');
-  els = Array.prototype.slice.call(els);
-  while (els.length) {
-    els.pop().classList.remove('xh-highlight');
+  for (var i = 0, l = els.length; i < l; i++) {
+    els[i].classList.remove('xh-highlight');
   }
 };
 
@@ -98,7 +97,7 @@ xh.evaluateQuery = function(query) {
   var xpathResult = null;
   var str = '';
   var nodeCount = 0;
-  var nodesToHighlight = [];
+  var toHighlight = [];
 
   try {
     xpathResult = document.evaluate(query, document, null,
@@ -123,13 +122,15 @@ xh.evaluateQuery = function(query) {
     nodeCount = 1;
   } else if (xpathResult.resultType ===
              XPathResult.UNORDERED_NODE_ITERATOR_TYPE) {
-    for (var it = xpathResult.iterateNext(); it;
-         it = xpathResult.iterateNext()) {
-      nodesToHighlight.push(it);
+    for (var node = xpathResult.iterateNext(); node;
+         node = xpathResult.iterateNext()) {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        toHighlight.push(node);
+      }
       if (str) {
         str += '\n';
       }
-      str += it.textContent;
+      str += node.textContent;
       nodeCount++;
     }
     if (nodeCount === 0) {
@@ -142,7 +143,7 @@ xh.evaluateQuery = function(query) {
     nodeCount = 0;
   }
 
-  xh.highlightNodes(nodesToHighlight);
+  xh.highlight(toHighlight);
   return [str, nodeCount];
 };
 
