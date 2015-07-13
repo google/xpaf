@@ -32,8 +32,8 @@ Installation instructions
    ```
 
 
-Unix installation instructions
-------------------------------
+Linux installation instructions
+-------------------------------
 
 1. Install autotools
 
