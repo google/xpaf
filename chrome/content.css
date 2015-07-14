@@ -26,7 +26,7 @@
   left: 0 !important;
   width: 100% !important;
   height: 120px !important;  /* bar.css body height */
-  z-index: 999999999 !important;
+  z-index: 2147483647 !important;
   transform: translate3d(0, 0, 0) !important;
   transition: transform 0.2s ease-out !important;
 }
