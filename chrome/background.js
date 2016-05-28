@@ -19,8 +19,6 @@
  * @license Apache License, Version 2.0.
  */
 
-'use strict';
-
 function handleRequest(request, sender, cb) {
   // Simply relay the request. This lets content.js talk to bar.js.
   chrome.tabs.sendMessage(sender.tab.id, request, cb);

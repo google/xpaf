@@ -13,7 +13,7 @@
   "nonbsp": true,
   "nonew": true,
   "quotmark": "single",
-  "strict": true,
+  "strict": "implied",
   "sub": true,
   "trailing": true,
   "undef": true,

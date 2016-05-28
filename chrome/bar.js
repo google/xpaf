@@ -19,8 +19,6 @@
  * @license Apache License, Version 2.0.
  */
 
-'use strict';
-
 // Constants.
 var MOVE_COOLDOWN_PERIOD_MS = 400;
 var X_KEYCODE = 88;

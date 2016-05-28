@@ -1,7 +1,8 @@
+// Note, this crashes in Chrome 51.0.2704.63 (64-bit) on OS X, but works just
+// fine in Firefox 46.0.1.
+
 // python -m SimpleHTTPServer 8001
 // http://localhost:8001/index.html
-
-'use strict';
 
 var CLICK = true;
 

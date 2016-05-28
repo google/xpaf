@@ -19,8 +19,6 @@
  * @license Apache License, Version 2.0.
  */
 
-'use strict';
-
 // Extension namespace.
 var xh = xh || {};
 
